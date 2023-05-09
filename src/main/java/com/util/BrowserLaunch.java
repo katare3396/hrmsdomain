@@ -30,8 +30,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import com.relevantcodes.extentreports.ExtentTest;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BrowserLaunch {
 
@@ -54,39 +57,43 @@ public class BrowserLaunch {
 //	Browser launch 
 			if (browsers.equalsIgnoreCase("chrome")) {
 
+				// Setup ChromeDriver using WebDriverManager
+				ChromeOptions chromeOptions = new ChromeOptions();
+
 //    headless run Chrome    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
 
-					ChromeOptions option = new ChromeOptions();
-					option.addArguments("headless");
-					option.setHeadless(true);
-					option.addArguments("window-size=1920x1000");
-					option.addArguments("--disable-blink-features=AutomationControlled");
-					driver = new ChromeDriver(option);
+					chromeOptions.addArguments("headless");
+					chromeOptions.setHeadless(true);
+					chromeOptions.addArguments("window-size=1920x1000");
+					WebDriverManager.chromedriver().setup();
+					driver = new ChromeDriver(chromeOptions);
+
+//					driver = new ChromeDriver(option);
 					System.out.println("Browser is opened in Headless mode.");
 				} else {
-
 					System.out.println("Browser is opened in Browser mode.");
-					driver = new ChromeDriver();
+					WebDriverManager.chromedriver().setup();
+					driver = new ChromeDriver(chromeOptions);
+
 				}
 
 			} else if (browsers.equalsIgnoreCase("edge")) {
 
-//	Edge Browser launch set property	
-//		String driverPath = System.getProperty("user.dir") + "//src//main//resources//msedgedriver.exe";
-//		System.out.println("driver path is :: " + driverPath);
-//		System.setProperty("webdriver.edge.driver", driverPath);
+				// Setup ChromeDriver using WebDriverManager
+				EdgeOptions option = new EdgeOptions();
 
 //	headless run Edge    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-					EdgeOptions option = new EdgeOptions();
 					option.addArguments("headless");
 					option.setHeadless(true);
 					option.addArguments("window-size=1920x1000");
+					WebDriverManager.edgedriver().setup();
 					driver = new EdgeDriver(option);
 					System.out.println("Browser is opened in Headless mode.");
 				} else {
 					System.out.println("Browser is opened in Browser mode.");
+					WebDriverManager.edgedriver().setup();
 					driver = new EdgeDriver();
 				}
 
@@ -113,9 +120,11 @@ public class BrowserLaunch {
 //     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
 				String firefoxPath = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 
+				// Setup Firefox using WebDriverManager
+				FirefoxOptions option = new FirefoxOptions();
+
 //	 headless run Firefox    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-					FirefoxOptions option = new FirefoxOptions();
 					option.setBinary(firefoxPath);
 					option.addArguments("--headless");
 					option.addArguments("window-size=1920x1000");
@@ -123,9 +132,9 @@ public class BrowserLaunch {
 					System.out.println("Browser is opened in Headless mode.");
 					driver = new FirefoxDriver(option);
 				} else {
-					FirefoxOptions option = new FirefoxOptions();
 					option.setBinary(firefoxPath);
 					System.out.println("Browser is opened in Browser mode.");
+					WebDriverManager.firefoxdriver().setup();
 					driver = new FirefoxDriver(option);
 				}
 
@@ -205,7 +214,7 @@ public class BrowserLaunch {
 	}
 
 //driver close -- current window	
-	@AfterClass(alwaysRun = true)
+	@AfterMethod(alwaysRun = true)
 	public void driverclose() {
 		driver.close();
 	}

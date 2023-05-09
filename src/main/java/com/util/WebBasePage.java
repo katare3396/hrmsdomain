@@ -25,7 +25,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class WebBasePage extends WaitStatement {
 
-	private WebDriver driver;
+	public WebDriver driver;
 	public static Logger logger;
 	private String pageName;
 
@@ -34,6 +34,7 @@ public class WebBasePage extends WaitStatement {
 
 	public WebBasePage(WebDriver driver) {
 		super(driver);
+		this.driver = driver;
 //		logger = Logger.getLogger(pageName);
 	}
 
@@ -61,9 +62,12 @@ public class WebBasePage extends WaitStatement {
 			getTest().log(LogStatus.FAIL,
 					pageName + name + " not entered with value - " + value + ", error exist - " + e);
 //			logger.info(name + " not entered with value - " + value + ", error exist - " + e);
+
+//			screenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
 			Assert.fail("" + e);
+
 			e.printStackTrace();
 		}
 	}
@@ -79,8 +83,11 @@ public class WebBasePage extends WaitStatement {
 			} catch (Exception e) {
 				getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
 //				logger.info(name + " not clicked");
+
+//				screenshot screen
 				takeScreenshot(new Object() {
 				}.getClass().getEnclosingMethod().getName());
+
 				Assert.fail(name + " -  element not clickable");
 			}
 		} else {
@@ -88,8 +95,8 @@ public class WebBasePage extends WaitStatement {
 //			logger.info(name + " not clicked");
 
 //			takescreenshot function
-			takeScreenshot(new Object() {
-			}.getClass().getEnclosingMethod().getName());
+//			takeScreenshot(new Object() {
+//			}.getClass().getEnclosingMethod().getName());
 
 			Assert.fail(name + " -  element not clikabke");
 		}
@@ -250,6 +257,11 @@ public class WebBasePage extends WaitStatement {
 			getTest().log(LogStatus.FAIL, " is" + name + "  Element not Present ?  - " + isElementPresent);
 			logger.info(" is" + name + "Element Present ? - " + isElementPresent);
 //			takeScreenshot("Element is not displayed");
+
+//			screenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
 //			Assert.fail("" + isElementPresent);
 		}
 		return isElementPresent;
@@ -263,18 +275,21 @@ public class WebBasePage extends WaitStatement {
 	}
 
 	public String getCurrentUrl(String url, String name) {
-
+		staticWait(3000);
 		String getUrl = driver.getCurrentUrl();
+		System.out.println(getUrl);
 		if (getUrl.startsWith(url)) {
 			getTest().log(LogStatus.PASS, name + "Url is ::a" + getUrl);
-			logger.info(name + "Url is ::  - " + getUrl);
+//			logger.info(name + "Url is ::  - " + getUrl);
 		} else {
 			getTest().log(LogStatus.FAIL, name + "Url is ::" + getUrl);
-			logger.info(name + "Url is ::  - " + getUrl);
+//			logger.info(name + "Url is ::  - " + getUrl);
+
 //	 		takescreenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
-			 Assert.fail(name + "Url not matched");
+
+			Assert.fail(name + "Url not matched");
 		}
 		return url;
 	}
@@ -290,7 +305,7 @@ public class WebBasePage extends WaitStatement {
 		logger.info("Page Url is :: " + pageUrl + name);
 	}
 
-	public String  verifySuccessMessage(WebElement element, String messageToVerify, int timeout) {
+	public String verifySuccessMessage(WebElement element, String messageToVerify, int timeout) {
 		String updateSuccessMsg = null;
 		try {
 			findElementVisibility(element, timeout);
@@ -303,7 +318,9 @@ public class WebBasePage extends WaitStatement {
 				getTest().log(LogStatus.FAIL, "Success message is not successfully displayed");
 //				logger.debug("Success message is not displayed");
 				Assert.fail("successMessage");
+
 //				takescreenshot function
+
 				takeScreenshot(new Object() {
 				}.getClass().getEnclosingMethod().getName());
 				updateSuccessMsg = "";
@@ -329,9 +346,9 @@ public class WebBasePage extends WaitStatement {
 
 		// Using isMultiple() method to verify if the element is multi-select, if yes go
 		// onto next steps else eit
-		if (select.isMultiple()) { 
+		if (select.isMultiple()) {
 
-			// Selecting option as  'Opel'-- ByIndex
+			// Selecting option as 'Opel'-- ByIndex
 			System.out.println("Select option Opel by Index");
 			select.selectByIndex(1);
 

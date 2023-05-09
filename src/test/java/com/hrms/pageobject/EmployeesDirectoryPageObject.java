@@ -26,10 +26,10 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 
 	@FindBy(xpath = ("//p[contains(text(),'Employees')]"))
 	private WebElement employees_Directory_Click;
-	
+
 // Object respository of employee directory page visibile
-	
-	@FindBy(xpath="//div[@class='h-100 start-flex flex-column css-52ol0n']")
+
+	@FindBy(xpath = "//div[@class='h-100 start-flex flex-column css-52ol0n']")
 	private WebElement Employee_Directory_page_Visible;
 
 //	object repository of "employee dierctory page --> create new btn"
@@ -213,17 +213,17 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	public void employeesDirectoryClick() {
 		click(employees_Directory_Click, "employeesDirectoryClick", 40);
 	}
-	
+
 // Action  respository of employee directory page visibile
-	
+
 	public void employeeDirectorypageVisible() {
 		hover(Employee_Directory_page_Visible, "Employee_Directory_page_Visible", 40);
 	}
-	
+
 //	Action respository of get current url
-	
+
 	public void getCurrentUrlToCrossVerify() {
-		getCurrentUrl(prop.getProperty("get current url"), "get current url");
+		getCurrentUrl(prop.getProperty("get_current_url"), "get_current_url");
 	}
 
 //	Action repository of "employee dierctory page --> create new btn"
@@ -430,58 +430,72 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	// form field
 
 	public void employeeCreationFormEmergencyNameText() {
-		enter(Employee_Creation_Form_Emergency_Name_Text, prop.getProperty("Emergency_Name_Text"), "Employee_Creation_Form_Emergency_Name_Text", 40);
+		enter(Employee_Creation_Form_Emergency_Name_Text, prop.getProperty("Emergency_Name_Text"),
+				"Employee_Creation_Form_Emergency_Name_Text", 40);
 	}
-	
+
 	public void employeeCreationFormEmergencyRelationshipText() {
-		enter(Employee_Creation_Form_Emergency_Relationship_Text, prop.getProperty("Emergency_Relationship_Text"), "Employee_Creation_Form_Emergency_Relationship_Text", 40);
+		enter(Employee_Creation_Form_Emergency_Relationship_Text, prop.getProperty("Emergency_Relationship_Text"),
+				"Employee_Creation_Form_Emergency_Relationship_Text", 40);
 	}
-	
+
 	public void employeeCreationFormEmergencyAddressText() {
 		enter(Employee_Creation_Form_Emergency_Address_Text, prop.getProperty("Emergency_Address_Text"), "", 40);
 	}
-	
+
 	public void employeeCreationFormEmergencyEmailText() {
-		enter(Employee_Creation_Form_Emergency_Email_Text, prop.getProperty("Emergency_Email_Text"), "Employee_Creation_Form_Emergency_Email_Text", 40);
+		enter(Employee_Creation_Form_Emergency_Email_Text, prop.getProperty("Emergency_Email_Text"),
+				"Employee_Creation_Form_Emergency_Email_Text", 40);
 	}
-	
+
 	public void employeeCreationFormEmergencyMobileNoText() {
-		enter(Employee_Creation_Form_Emergency_Mobile_No_Text, prop.getProperty("Emergency_Mobile_No_Text"), "Employee_Creation_Form_Emergency_Mobile_No_Text", 40);
+		enter(Employee_Creation_Form_Emergency_Mobile_No_Text, prop.getProperty("Emergency_Mobile_No_Text"),
+				"Employee_Creation_Form_Emergency_Mobile_No_Text", 40);
 	}
-	
+
 //	Action repository of six section -->"Qualification" employee creation form field 
-	
+
 	public void employeeCreationFormQualificationDiplomaNameDd() {
-		enter(Employee_Creation_Form_Qualification_Diploma_Name_Dd, prop.getProperty("Qualification_Diploma_Name_Dd"), "Employee_Creation_Form_Qualification_Diploma_Name_Dd", 40);
+		enter(Employee_Creation_Form_Qualification_Diploma_Name_Dd, prop.getProperty("Qualification_Diploma_Name_Dd"),
+				"Employee_Creation_Form_Qualification_Diploma_Name_Dd", 40);
 	}
-	
+
 	public void employeeCreationFormQualificationInstitutionNameText() {
-		enter(Employee_Creation_Form_Qualification_Institution_Name_Text, prop.getProperty("Qualification_Institution_Name_Text"), "Employee_Creation_Form_Qualification_Institution_Name_Text", 40);
+		enter(Employee_Creation_Form_Qualification_Institution_Name_Text,
+				prop.getProperty("Qualification_Institution_Name_Text"),
+				"Employee_Creation_Form_Qualification_Institution_Name_Text", 40);
 	}
-	
+
 	public void employeeCreationFormQualificationPassingYearText() {
-		enter(Employee_Creation_Form_Qualification_Passing_Year_Text, prop.getProperty("Qualification_Passing_Year_Text"), "Employee_Creation_Form_Qualification_Passing_Year_Text", 40);
+		enter(Employee_Creation_Form_Qualification_Passing_Year_Text,
+				prop.getProperty("Qualification_Passing_Year_Text"),
+				"Employee_Creation_Form_Qualification_Passing_Year_Text", 40);
 	}
-	
+
 	public void employeeCreationFormQualificationPercentageText() {
-		enter(Employee_Creation_Form_Qualification_Percentage_Text, prop.getProperty("Qualification_Percentage_Text"), "Employee_Creation_Form_Qualification_Percentage_Text", 40);
+		enter(Employee_Creation_Form_Qualification_Percentage_Text, prop.getProperty("Qualification_Percentage_Text"),
+				"Employee_Creation_Form_Qualification_Percentage_Text", 40);
 	}
-	
+
 //	Action repository of seven section -->"Work Experience" employee creation form field 
-	
+
 	public void employeeCreationFormWEPreviousCompanyNameTxt() {
-		enter(Employee_Creation_Form_WE_Previous_Company_Name_Txt, prop.getProperty("WE_Previous_Company_Name_Txt"), "Employee_Creation_Form_WE_Previous_Company_Name_Txt", 40);
+		enter(Employee_Creation_Form_WE_Previous_Company_Name_Txt, prop.getProperty("WE_Previous_Company_Name_Txt"),
+				"Employee_Creation_Form_WE_Previous_Company_Name_Txt", 40);
 	}
-	
+
 	public void employeeCreationFormWEJobTitleTxt() {
-		enter(Employee_Creation_Form_WE_Job_Title_Txt, prop.getProperty("WE_Job_Title_Txt"), "Employee_Creation_Form_WE_Job_Title_Txt", 40);
+		enter(Employee_Creation_Form_WE_Job_Title_Txt, prop.getProperty("WE_Job_Title_Txt"),
+				"Employee_Creation_Form_WE_Job_Title_Txt", 40);
 	}
-	
+
 	public void employeeCreationFormWEFromDateCalendar() {
-		enter(Employee_Creation_Form_WE_From_Date_Calendar, prop.getProperty("WE_From_Date_Calendar"), "Employee_Creation_Form_WE_From_Date_Calendar", 40);
+		enter(Employee_Creation_Form_WE_From_Date_Calendar, prop.getProperty("WE_From_Date_Calendar"),
+				"Employee_Creation_Form_WE_From_Date_Calendar", 40);
 	}
-	
+
 	public void employeeCreationFormWETODateCalendar() {
-		enter(Employee_Creation_Form_WE_TO_Date_Calendar, prop.getProperty("WE_TO_Date_Calendar"), "Employee_Creation_Form_WE_TO_Date_Calendar", 40);
+		enter(Employee_Creation_Form_WE_TO_Date_Calendar, prop.getProperty("WE_TO_Date_Calendar"),
+				"Employee_Creation_Form_WE_TO_Date_Calendar", 40);
 	}
 }

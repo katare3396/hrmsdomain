@@ -12,14 +12,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitStatement {
 
-	
 	WebDriver driver;
 
 	public WaitStatement(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public  WebElement findElementVisibility(final WebElement ele, int timeout) {
+	public WebElement findElementVisibility(final WebElement ele, int timeout) {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		try {
@@ -31,10 +30,6 @@ public class WaitStatement {
 		}
 		return ele;
 	}
-	
-	
-
-	
 
 	public boolean findElementInVisibility(final WebElement ele, int time) {
 
@@ -61,8 +56,6 @@ public class WaitStatement {
 		return ele;
 	}
 
-
-
 	public WebElement findElementsVisibility(final By by) {
 
 		List<WebElement> webElements = driver.findElements(by);
@@ -78,8 +71,6 @@ public class WaitStatement {
 		}
 		return null;
 	}
-
-
 
 	public WebElement waitForInVisibilityOfElement(final By by, int time) {
 
@@ -102,11 +93,7 @@ public class WaitStatement {
 		} catch (Exception e) {
 			System.out.println();
 			return null;
-			
-			
-			
-			
-			
+
 		}
 		return driver.findElement(by);
 	}

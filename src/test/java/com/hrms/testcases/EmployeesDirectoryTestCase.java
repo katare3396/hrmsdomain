@@ -6,30 +6,24 @@ import com.hrms.actions.EmployeesDirectoryActions;
 import com.hrms.actions.LoginAction;
 import com.util.BrowserLaunch;
 
-public class EmployeesDirectoryTestCase extends BrowserLaunch{
+public class EmployeesDirectoryTestCase extends BrowserLaunch {
 
 	private EmployeesDirectoryActions employeesdirectoryactions;
-	
-	public EmployeesDirectoryTestCase() {
+
+	@Test(priority = 0)
+	public void login() {
 		employeesdirectoryactions = new EmployeesDirectoryActions(driver);
+		new LoginAction(driver).enterLoginCredential();
 
 	}
-	
-	@Test(priority=0)
-	public void login() {
-		new LoginAction(driver).enterLoginCredential();
-		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
 
+	@Test(priority = 1)
+	public void employeeDirectoryPageVisible() {
 		employeesdirectoryactions.employeeDirectoryPageVisible();
 	}
-	
-//	@Test(priority=1)
-//	public void employeeDirectoryPageVisible() {
-//		employeesdirectoryactions.employeeDirectoryPageVisible();
-//	}
-//	
-//	@Test(priority=2)
-//	public void createEmployeeManually() {
-//		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
-//	}
+
+	@Test(priority = 2)
+	public void createEmployeeManually() {
+		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
+	}
 }
