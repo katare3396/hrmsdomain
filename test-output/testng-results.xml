@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="1" failed="1" skipped="1">
+<testng-results ignored="1" total="3" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-07T03:02:59 IST" name="Default suite" finished-at="2023-05-07T03:03:13 IST" duration-ms="13727">
+  <suite started-at="2023-05-09T06:22:44 IST" name="Suite" finished-at="2023-05-09T06:23:11 IST" duration-ms="26918">
     <groups>
     </groups>
-    <test started-at="2023-05-07T03:02:59 IST" name="Default test" finished-at="2023-05-07T03:03:13 IST" duration-ms="13727">
+    <test started-at="2023-05-09T06:22:44 IST" name="Test" finished-at="2023-05-09T06:23:11 IST" duration-ms="26918">
       <class name="com.hrms.testcases.EmployeesDirectoryTestCase">
-        <test-method is-config="true" signature="browserlaunch()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:02:59 IST" name="browserlaunch" finished-at="2023-05-07T03:03:06 IST" duration-ms="6999" status="PASS">
+        <test-method is-config="true" signature="browserlaunch()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737]" started-at="2023-05-09T06:22:58 IST" name="browserlaunch" finished-at="2023-05-09T06:23:04 IST" duration-ms="6391" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserlaunch -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:06 IST" name="beforeMethod" finished-at="2023-05-07T03:03:07 IST" duration-ms="275" status="PASS">
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737]" started-at="2023-05-09T06:23:04 IST" name="beforeMethod" finished-at="2023-05-09T06:23:04 IST" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,53 +22,17 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="login()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:07 IST" name="login" finished-at="2023-05-07T03:03:12 IST" duration-ms="5839" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- login -->
-        <test-method is-config="true" signature="reportWrapUp(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:12 IST" name="reportWrapUp" finished-at="2023-05-07T03:03:12 IST" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=login status=SUCCESS method=EmployeesDirectoryTestCase.login()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f] output={null}]]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[public void com.hrms.testcases.EmployeesDirectoryTestCase.login()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportWrapUp -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:12 IST" name="beforeMethod" finished-at="2023-05-07T03:03:12 IST" duration-ms="0" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible()]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method signature="employeeDirectoryPageVisible()[pri:1, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:12 IST" name="employeeDirectoryPageVisible" finished-at="2023-05-07T03:03:12 IST" duration-ms="2" status="FAIL">
-          <exception class="java.lang.IllegalArgumentException">
+        <test-method signature="login()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737]" started-at="2023-05-09T06:23:04 IST" name="login" finished-at="2023-05-09T06:23:10 IST" duration-ms="5951" status="FAIL">
+          <exception class="java.lang.NullPointerException">
             <message>
-              <![CDATA[Input must be set]]>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebDriver.getCurrentUrl()" because "this.driver" is null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalArgumentException: Input must be set
-at org.openqa.selenium.internal.Require.nonNull(Require.java:59)
-at org.openqa.selenium.support.ui.FluentWait.<init>(FluentWait.java:97)
-at org.openqa.selenium.support.ui.WebDriverWait.<init>(WebDriverWait.java:77)
-at org.openqa.selenium.support.ui.WebDriverWait.<init>(WebDriverWait.java:46)
-at com.util.WaitStatement.findElementVisibility(WaitStatement.java:24)
-at com.util.WebBasePage.click(WebBasePage.java:73)
-at com.hrms.pageobject.EmployeesDirectoryPageObject.employeesDirectoryClick(EmployeesDirectoryPageObject.java:215)
-at com.hrms.actions.EmployeesDirectoryActions.employeeDirectoryPageVisible(EmployeesDirectoryActions.java:19)
-at com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible(EmployeesDirectoryTestCase.java:25)
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.getCurrentUrl()" because "this.driver" is null
+at com.util.WebBasePage.getCurrentUrl(WebBasePage.java:267)
+at com.hrms.pageobject.EmployeesDirectoryPageObject.getCurrentUrlToCrossVerify(EmployeesDirectoryPageObject.java:226)
+at com.hrms.actions.EmployeesDirectoryActions.employeeDirectoryGetCurrentUrl(EmployeesDirectoryActions.java:24)
+at com.hrms.testcases.EmployeesDirectoryTestCase.login(EmployeesDirectoryTestCase.java:21)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -99,20 +63,20 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalArgumentException -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- employeeDirectoryPageVisible -->
-        <test-method is-config="true" signature="reportWrapUp(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:12 IST" name="reportWrapUp" finished-at="2023-05-07T03:03:13 IST" duration-ms="422" status="FAIL">
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="reportWrapUp(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737]" started-at="2023-05-09T06:23:10 IST" name="reportWrapUp" finished-at="2023-05-09T06:23:11 IST" duration-ms="348" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=employeeDirectoryPageVisible status=FAILURE method=EmployeesDirectoryTestCase.employeeDirectoryPageVisible()[pri:1, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f] output={null}]]]>
+                <![CDATA[[TestResult name=login status=FAILURE method=EmployeesDirectoryTestCase.login()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737] output={null}]]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[public void com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible()]]>
+                <![CDATA[public void com.hrms.testcases.EmployeesDirectoryTestCase.login()]]>
               </value>
             </param>
           </params>
@@ -123,7 +87,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
             <full-stacktrace>
               <![CDATA[java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.info(String)" because "com.util.BrowserLaunch.logger" is null
 at org.testng.Assert.fail(Assert.java:99)
-at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:211)
+at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:197)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -163,127 +127,56 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportWrapUp -->
-        <test-method is-config="true" signature="reportWrapUp(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:13 IST" name="reportWrapUp" finished-at="2023-05-07T03:03:13 IST" duration-ms="140" status="FAIL">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name={null} status=CREATED method=EmployeesDirectoryTestCase.createEmployeeManually()[pri:2, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f] output={null}]]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[public void com.hrms.testcases.EmployeesDirectoryTestCase.createEmployeeManually()]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Error while taking screenshot - java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.info(String)" because "com.util.BrowserLaunch.logger" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.info(String)" because "com.util.BrowserLaunch.logger" is null
-at org.testng.Assert.fail(Assert.java:99)
-at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:211)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
-at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
-at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
-at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:676)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:546)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- reportWrapUp -->
-        <test-method signature="createEmployeeManually()[pri:2, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:13 IST" name="createEmployeeManually" finished-at="2023-05-07T03:03:13 IST" duration-ms="0" status="SKIP">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Error while taking screenshot - java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.info(String)" because "com.util.BrowserLaunch.logger" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke "java.util.logging.Logger.info(String)" because "com.util.BrowserLaunch.logger" is null
-at org.testng.Assert.fail(Assert.java:99)
-at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:211)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
-at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
-at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
-at org.testng.internal.TestInvoker.runConfigMethods(TestInvoker.java:700)
-at org.testng.internal.TestInvoker.runAfterGroupsConfigurations(TestInvoker.java:676)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:660)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createEmployeeManually -->
-        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:13 IST" name="beforeMethod" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1683408793410" status="SKIP">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method is-config="true" signature="driverclose()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:13 IST" name="driverclose" finished-at="1970-01-01T05:30:00 IST" duration-ms="-1683408793550" status="SKIP">
+        <test-method is-config="true" signature="driverclose()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@76494737]" started-at="2023-05-09T06:23:11 IST" name="driverclose" finished-at="2023-05-09T06:23:11 IST" duration-ms="211" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- driverclose -->
-        <test-method is-config="true" signature="close()[pri:0, instance:com.hrms.testcases.EmployeesDirectoryTestCase@59402b8f]" started-at="2023-05-07T03:03:13 IST" name="close" finished-at="2023-05-07T03:03:13 IST" duration-ms="262" status="PASS">
+      </class> <!-- com.hrms.testcases.EmployeesDirectoryTestCase -->
+      <class name="com.hrms.testcases.LoginTestCase">
+        <test-method is-config="true" signature="browserlaunch()[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:22:44 IST" name="browserlaunch" finished-at="2023-05-09T06:22:51 IST" duration-ms="7534" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserlaunch -->
+        <test-method is-config="true" signature="beforeMethod(java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:22:51 IST" name="beforeMethod" finished-at="2023-05-09T06:22:52 IST" duration-ms="207" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.hrms.testcases.LoginTestCase.adminSideLogin()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="adminSideLogin()[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:22:52 IST" name="adminSideLogin" finished-at="2023-05-09T06:22:58 IST" duration-ms="6034" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- adminSideLogin -->
+        <test-method is-config="true" signature="reportWrapUp(org.testng.ITestResult,java.lang.reflect.Method)[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:22:58 IST" name="reportWrapUp" finished-at="2023-05-09T06:22:58 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=adminSideLogin status=SUCCESS method=LoginTestCase.adminSideLogin()[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6] output={null}]]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void com.hrms.testcases.LoginTestCase.adminSideLogin()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportWrapUp -->
+        <test-method is-config="true" signature="driverclose()[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:22:58 IST" name="driverclose" finished-at="2023-05-09T06:22:58 IST" duration-ms="211" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverclose -->
+        <test-method is-config="true" signature="close()[pri:0, instance:com.hrms.testcases.LoginTestCase@7db12bb6]" started-at="2023-05-09T06:23:11 IST" name="close" finished-at="2023-05-09T06:23:11 IST" duration-ms="213" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
-      </class> <!-- com.hrms.testcases.EmployeesDirectoryTestCase -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- com.hrms.testcases.LoginTestCase -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

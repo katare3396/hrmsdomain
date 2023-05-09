@@ -1,6 +1,7 @@
 package com.util;
 
 import static com.reporting.ComplexReportFactory.closeReport;
+import static com.reporting.ComplexReportFactory.closeTest;
 import static com.reporting.ComplexReportFactory.getTest;
 
 import java.io.File;
@@ -30,9 +31,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import com.opera.core.systems.OperaDriver;
 import com.relevantcodes.extentreports.ExtentTest;
-
 
 public class BrowserLaunch {
 
@@ -50,137 +49,123 @@ public class BrowserLaunch {
 
 	@BeforeClass
 	public void browserlaunch() {
+		try {
 
-//		Browser launch 
-		if (browsers.equalsIgnoreCase("chrome")) {
+//	Browser launch 
+			if (browsers.equalsIgnoreCase("chrome")) {
 
-//		Chrome Browser launch set property			
-			String driverPath = System.getProperty("user.dir") + "//src//main//resources//chromedriver.exe";
-			System.out.println("driver path is :: " + driverPath);
-			System.setProperty("webdriver.chrome.driver", driverPath);
+//    headless run Chrome    true---headless mode  , false -- browser mode
+				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
 
-//	    headless run Chrome    true---headless mode  , false -- browser mode
-			if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
+					ChromeOptions option = new ChromeOptions();
+					option.addArguments("headless");
+					option.setHeadless(true);
+					option.addArguments("window-size=1920x1000");
+					option.addArguments("--disable-blink-features=AutomationControlled");
+					driver = new ChromeDriver(option);
+					System.out.println("Browser is opened in Headless mode.");
+				} else {
 
-				ChromeOptions option = new ChromeOptions();
-				option.addArguments("headless");
-				option.setHeadless(true);
-				option.addArguments("window-size=1920x1000");
-				driver = new ChromeDriver(option);
-				System.out.println("Browser is opened in Headless mode.");
-			} else {
+					System.out.println("Browser is opened in Browser mode.");
+					driver = new ChromeDriver();
+				}
 
-				System.out.println("Browser is opened in Browser mode.");
-				driver = new ChromeDriver();
-			}
+			} else if (browsers.equalsIgnoreCase("edge")) {
 
-		} else if (browsers.equalsIgnoreCase("edge")) {
+//	Edge Browser launch set property	
+//		String driverPath = System.getProperty("user.dir") + "//src//main//resources//msedgedriver.exe";
+//		System.out.println("driver path is :: " + driverPath);
+//		System.setProperty("webdriver.edge.driver", driverPath);
 
-//		Edge Browser launch set property	
-			String driverPath = System.getProperty("user.dir") + "//src//main//resources//msedgedriver.exe";
-			System.out.println("driver path is :: " + driverPath);
-			System.setProperty("webdriver.edge.driver", driverPath);
+//	headless run Edge    true---headless mode  , false -- browser mode
+				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
+					EdgeOptions option = new EdgeOptions();
+					option.addArguments("headless");
+					option.setHeadless(true);
+					option.addArguments("window-size=1920x1000");
+					driver = new EdgeDriver(option);
+					System.out.println("Browser is opened in Headless mode.");
+				} else {
+					System.out.println("Browser is opened in Browser mode.");
+					driver = new EdgeDriver();
+				}
 
-//		headless run Edge    true---headless mode  , false -- browser mode
-			if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-				EdgeOptions option = new EdgeOptions();
-				option.addArguments("headless");
-				option.setHeadless(true);
-				option.addArguments("window-size=1920x1000");
-				driver = new EdgeDriver(option);
-				System.out.println("Browser is opened in Headless mode.");
-			} else {
-				System.out.println("Browser is opened in Browser mode.");
-				driver = new EdgeDriver();
-			}
+			} else if (browsers.equalsIgnoreCase("opera")) {
 
-		} else if (browsers.equalsIgnoreCase("opera")) {
+//	 headless run Opera    true---headless mode  , false -- browser mode
+				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
+//			OperaOptions option = new OperaOptions();
+//			option.addArguments("headless");
+//			option.setHeadless(true);
+//			option.addArguments("window-size=1920x1000");
+//			option.AddExtension("");
+//			option.BinaryLocation ="";
+//			driver = new OperaDriver(option);
+					System.out.println("Browser is opened in Headless mode.");
+				} else {
+					System.out.println("Browser is opened in Browser mode.");
+//					driver = new OperaDriver();
 
-//		Opera Browser launch set property	
-			String driverPath = System.getProperty("user.dir") + "//src//main//resources//operadriver.exe";
-			System.out.println("driver path is :: " + driverPath);
-			System.setProperty("webdriver.opera.driver", driverPath);
+				}
 
-//		 headless run Opera    true---headless mode  , false -- browser mode
-			if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-//				OperaOptions option = new OperaOptions();
-//				option.addArguments("headless");
-//				option.setHeadless(true);
-//				option.addArguments("window-size=1920x1000");
-//				option.AddExtension("");
-//				option.BinaryLocation ="";
-//				driver = new OperaDriver(option);
-				System.out.println("Browser is opened in Headless mode.");
-			} else {
-				System.out.println("Browser is opened in Browser mode.");
-				driver = new OperaDriver();
+			} else if (browsers.equalsIgnoreCase("firefox")) {
 
-			}
+//     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
+				String firefoxPath = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 
-		} else if (browsers.equalsIgnoreCase("firefox")) {
+//	 headless run Firefox    true---headless mode  , false -- browser mode
+				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
+					FirefoxOptions option = new FirefoxOptions();
+					option.setBinary(firefoxPath);
+					option.addArguments("--headless");
+					option.addArguments("window-size=1920x1000");
+					option.setBinary(firefoxPath);
+					System.out.println("Browser is opened in Headless mode.");
+					driver = new FirefoxDriver(option);
+				} else {
+					FirefoxOptions option = new FirefoxOptions();
+					option.setBinary(firefoxPath);
+					System.out.println("Browser is opened in Browser mode.");
+					driver = new FirefoxDriver(option);
+				}
+
+			} else if (browsers.equalsIgnoreCase("safari")) {
 
 //	     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
-			String firefoxPath = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-
-//		 Firebox Browser launch set property	
-
-			String driverPath = System.getProperty("user.dir") + "//src//main//resources//geckodriver.exe";
-			System.out.println("driver path is :: " + driverPath);
-			System.setProperty("webdriver.gecko.driver", driverPath);
+				String safariPath = "\"C:\\Program Files (x86)\\Safari\\\"";
 
 //		 headless run Firefox    true---headless mode  , false -- browser mode
-			if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-				FirefoxOptions option = new FirefoxOptions();
-				option.setBinary(firefoxPath);
-				option.addArguments("--headless");
-				option.addArguments("window-size=1920x1000");
-				option.setBinary(firefoxPath);
-				System.out.println("Browser is opened in Headless mode.");
-				driver = new FirefoxDriver(option);
+				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
+					SafariOptions option = new SafariOptions();
+					option.setBrowserVersion(safariPath);
+//				option.addArguments("--headless");
+//				option.addArguments("window-size=1920x1000");
+//				option.
+//				System.out.println("Browser is opened in Headless mode.");
+//				driver = new FirefoxDriver(option);	
+				} else {
+					SafariOptions option = new SafariOptions();
+					option.setBrowserVersion(safariPath);
+					System.out.println("Browser is opened in Browser mode.");
+					driver = new SafariDriver();
+				}
+
 			} else {
-				FirefoxOptions option = new FirefoxOptions();
-				option.setBinary(firefoxPath);
-				System.out.println("Browser is opened in Browser mode.");
-				driver = new FirefoxDriver(option);
+// if browser is incorrect
+				System.out.println("Please provide correct browser name");
+
 			}
-
-		} else if (browsers.equalsIgnoreCase("safari")) {
-
-//		     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
-			String safariPath = "\"C:\\Program Files (x86)\\Safari\\\"";
-
-//			 Firebox Browser launch set property	
-
-//				String driverPath = System.getProperty("user.dir") + "//src//main//resources//geckodriver.exe";
-//				System.out.println("driver path is :: " + driverPath);
-//				System.setProperty("webdriver.gecko.driver", driverPath);
-
-//			 headless run Firefox    true---headless mode  , false -- browser mode
-			if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-				SafariOptions option = new SafariOptions();
-				option.setBrowserVersion(safariPath);
-//					option.addArguments("--headless");
-//					option.addArguments("window-size=1920x1000");
-//					option.
-//					System.out.println("Browser is opened in Headless mode.");
-//					driver = new FirefoxDriver(option);	
-			} else {
-				SafariOptions option = new SafariOptions();
-				option.setBrowserVersion(safariPath);
-				System.out.println("Browser is opened in Browser mode.");
-				driver = new SafariDriver();
-			}
-
-		} else {
-//     if browser is incorrect
-			System.out.println("Please provide correct browser name");
-
-		}
 
 //		Url of Browser
-		driver.get(prop.getProperty("base_Url"));
+			driver.get(prop.getProperty("base_Url"));
 //		get use to maximize window
-		driver.manage().window().maximize();
+			driver.manage().window().maximize();
+//		to delete the cookie
+			driver.manage().deleteAllCookies();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -199,7 +184,7 @@ public class BrowserLaunch {
 
 			String imagePath = System.getProperty("user.dir") + "\\reports\\" + method.getName() + "_"
 					+ new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			
+
 			// generate screenshot as a file object
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			try {
@@ -211,19 +196,18 @@ public class BrowserLaunch {
 				Assert.fail("Error while taking screenshot - " + e);
 			}
 		}
-//		closeTest(test);
+		closeTest(test);
 	}
 
 	@AfterSuite(alwaysRun = true)
 	public void close() {
 		closeReport();
 	}
-	
+
 //driver close -- current window	
-	@AfterClass
+	@AfterClass(alwaysRun = true)
 	public void driverclose() {
 		driver.close();
 	}
-	
-	
+
 }

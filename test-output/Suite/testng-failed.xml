@@ -5,11 +5,11 @@
     <classes>
       <class name="com.hrms.testcases.EmployeesDirectoryTestCase">
         <methods>
-          <include name="createemployeemanually"/>
           <include name="beforeMethod"/>
           <include name="close"/>
           <include name="driverclose"/>
           <include name="reportWrapUp"/>
+          <include name="login"/>
           <include name="browserlaunch"/>
         </methods>
       </class> <!-- com.hrms.testcases.EmployeesDirectoryTestCase -->

@@ -18,15 +18,18 @@ public class EmployeesDirectoryTestCase extends BrowserLaunch{
 	@Test(priority=0)
 	public void login() {
 		new LoginAction(driver).enterLoginCredential();
-	}
-	
-	@Test(priority=1)
-	public void employeeDirectoryPageVisible() {
+		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
+
 		employeesdirectoryactions.employeeDirectoryPageVisible();
 	}
 	
-	@Test(priority=2)
-	public void createEmployeeManually() {
-		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
-	}
+//	@Test(priority=1)
+//	public void employeeDirectoryPageVisible() {
+//		employeesdirectoryactions.employeeDirectoryPageVisible();
+//	}
+//	
+//	@Test(priority=2)
+//	public void createEmployeeManually() {
+//		employeesdirectoryactions.employeeDirectoryGetCurrentUrl();
+//	}
 }

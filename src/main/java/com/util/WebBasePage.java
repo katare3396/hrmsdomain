@@ -34,7 +34,6 @@ public class WebBasePage extends WaitStatement {
 
 	public WebBasePage(WebDriver driver) {
 		super(driver);
-		this.driver = driver;
 //		logger = Logger.getLogger(pageName);
 	}
 
