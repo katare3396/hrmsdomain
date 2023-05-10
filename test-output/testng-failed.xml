@@ -5,7 +5,6 @@
     <classes>
       <class name="com.hrms.testcases.EmployeesDirectoryTestCase">
         <methods>
-          <include name="createEmployeeManually"/>
           <include name="beforeMethod"/>
           <include name="close"/>
           <include name="employeeDirectoryPageVisible"/>

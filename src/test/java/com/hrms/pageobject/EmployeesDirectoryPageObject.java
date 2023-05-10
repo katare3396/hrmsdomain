@@ -50,6 +50,11 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	@FindBy(xpath = "//span[contains(text(),'Proceed')]")
 	private WebElement Process_Btn_Employee_Creation_Form_Dd;
 
+//	object repository of employee creation form save btn
+
+	@FindBy(xpath = "//span[contains(text(),'Save')]")
+	private WebElement Save_Btn_Employee_Creation_Form_Dd;
+
 //object repository of first section -->"personal detail"  employee creation form field
 
 	@FindBy(xpath = "//label[contains(text(),'Full Name')]")
@@ -119,6 +124,9 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 
 	@FindBy(xpath = "//label[contains(text(),'Employee Status')]")
 	private WebElement Employee_Creation_Form_detail_Employee_Status_Dd;
+
+	@FindBy(xpath = "//label[contains(text(),'Company')]")
+	private WebElement Employee_Creation_Form_Detail_Company_Dd;
 
 //	object repository of third section -->"work experience" employee creation form field
 
@@ -223,7 +231,7 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 //	Action respository of get current url
 
 	public void getCurrentUrlToCrossVerify() {
-		getCurrentUrl(prop.getProperty("get_current_url"), "get_current_url");
+		getCurrentUrl(prop.getProperty("get_current_url_employee_Directory"), "get_current_url_employee_Directory");
 	}
 
 //	Action repository of "employee dierctory page --> create new btn"
@@ -244,6 +252,12 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 //	Action repository of employee creation form process btn
 	public void processBtnEmployeeCreationFormDd() {
 		click(Process_Btn_Employee_Creation_Form_Dd, "Process_Btn_Employee_Creation_Form_Dd", 40);
+	}
+
+//	Action repository of employee creation form save btn
+
+	public void saveBtnEmployeeCreationFormDd() {
+		click(Save_Btn_Employee_Creation_Form_Dd, "Save_Btn_Employee_Creation_Form_Dd", 40);
 	}
 
 //Action repository of first section -->"personal detail"  employee creation form field
@@ -357,6 +371,11 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	public void employeeCreationFormdetailEmployeeStatusDd() {
 		enter(Employee_Creation_Form_detail_Employee_Status_Dd, prop.getProperty("Employee_Status_Dd"),
 				"Employee_Creation_Form_detail_Employee_Status_Dd", 40);
+	}
+
+	public void employeeCreationFormDetailCompanyDd() {
+		enter(Employee_Creation_Form_Detail_Company_Dd, prop.getProperty("Company_Dd"),
+				"Employee_Creation_Form_Detail_Company_Dd", 40);
 	}
 
 //	Action repository of third section -->"work experience" employee creation form field

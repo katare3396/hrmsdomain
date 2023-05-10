@@ -18,5 +18,6 @@ public class LoginAction {
 		loginpageobject.loginPasswordTxtField();
 		loginpageobject.loginBtnClick();
 		loginpageobject.loginAssertLoginSucessfully();
+		loginpageobject.getCurrentUrlAdminSide();
 	}
 }

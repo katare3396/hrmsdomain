@@ -279,7 +279,7 @@ public class WebBasePage extends WaitStatement {
 		String getUrl = driver.getCurrentUrl();
 		System.out.println(getUrl);
 		if (getUrl.startsWith(url)) {
-			getTest().log(LogStatus.PASS, name + "Url is ::a" + getUrl);
+			getTest().log(LogStatus.PASS, name + "pass Url is ::" + getUrl);
 //			logger.info(name + "Url is ::  - " + getUrl);
 		} else {
 			getTest().log(LogStatus.FAIL, name + "Url is ::" + getUrl);
