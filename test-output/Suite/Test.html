@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed May 10 18:51:35 IST 2023</td>
+<td>Started on:</td><td>Fri May 12 18:25:07 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>38 seconds (38979 ms)</td>
+<tr><td>Total time:</td><td>36 seconds (36705 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -79,8 +79,8 @@ function toggleAllBoxes() {
 <td><div><pre>java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke &quot;java.util.logging.Logger.info(String)&quot; because &quot;com.util.BrowserLaunch.logger&quot; is null
 	at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:204)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 33 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace627707285", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace627707285'><pre>java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke &quot;java.util.logging.Logger.info(String)&quot; because &quot;com.util.BrowserLaunch.logger&quot; is null
+... Removed 33 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1321037782", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1321037782'><pre>java.lang.AssertionError: Error while taking screenshot - java.lang.NullPointerException: Cannot invoke &quot;java.util.logging.Logger.info(String)&quot; because &quot;com.util.BrowserLaunch.logger&quot; is null
 	at org.testng.Assert.fail(Assert.java:99)
 	at com.util.BrowserLaunch.reportWrapUp(BrowserLaunch.java:204)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -129,34 +129,34 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible()'><b>employeeDirectoryPageVisible</b><br>Test class: com.hrms.testcases.EmployeesDirectoryTestCase</td>
-<td><div><pre>java.lang.AssertionError: org.openqa.selenium.InvalidElementStateException: invalid element state
+<td><div><pre>java.lang.AssertionError: org.openqa.selenium.ElementNotInteractableException: element not interactable
   (Session info: chrome=113.0.5672.93)
 Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [7726d215352aecb1134cb64ca1a9226d, clearElement {id=B3B6FB0288F86DEAF01256C5351FCF99_element_55}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54456}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54456/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on WINDOWS (7726d215352aecb1134cb64ca1a9226d)] -&gt; xpath: //label[contains(text(),&apos;Full Name&apos;)]]
-Session ID: 7726d215352aecb1134cb64ca1a9226d
-	at com.util.WebBasePage.enter(WebBasePage.java:69)
-	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormFullNameInput(EmployeesDirectoryPageObject.java:266)
-	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:41)
+Command: [6aef66ea9a1fee55341a1cf19decc42d, sendKeysToElement {id=1923FE809BBD2603163C4DAF8EBA5B37_element_121, value=[Ljava.lang.CharSequence;@6e0d16a4}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54127}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54127/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (6aef66ea9a1fee55341a1cf19decc42d)] -&gt; xpath: //input[@name=&apos;STATE_ID&apos;]]
+Session ID: 6aef66ea9a1fee55341a1cf19decc42d
+	at com.util.WebBasePage.enterforcevalue(WebBasePage.java:102)
+	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormAddressStateDd(EmployeesDirectoryPageObject.java:410)
+	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:75)
 	at com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible(EmployeesDirectoryTestCase.java:21)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1185387998", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1185387998'><pre>java.lang.AssertionError: org.openqa.selenium.InvalidElementStateException: invalid element state
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace871679849", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace871679849'><pre>java.lang.AssertionError: org.openqa.selenium.ElementNotInteractableException: element not interactable
   (Session info: chrome=113.0.5672.93)
 Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [7726d215352aecb1134cb64ca1a9226d, clearElement {id=B3B6FB0288F86DEAF01256C5351FCF99_element_55}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54456}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54456/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on WINDOWS (7726d215352aecb1134cb64ca1a9226d)] -&gt; xpath: //label[contains(text(),&apos;Full Name&apos;)]]
-Session ID: 7726d215352aecb1134cb64ca1a9226d
+Command: [6aef66ea9a1fee55341a1cf19decc42d, sendKeysToElement {id=1923FE809BBD2603163C4DAF8EBA5B37_element_121, value=[Ljava.lang.CharSequence;@6e0d16a4}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54127}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54127/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (6aef66ea9a1fee55341a1cf19decc42d)] -&gt; xpath: //input[@name=&apos;STATE_ID&apos;]]
+Session ID: 6aef66ea9a1fee55341a1cf19decc42d
 	at org.testng.Assert.fail(Assert.java:99)
-	at com.util.WebBasePage.enter(WebBasePage.java:69)
-	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormFullNameInput(EmployeesDirectoryPageObject.java:266)
-	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:41)
+	at com.util.WebBasePage.enterforcevalue(WebBasePage.java:102)
+	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormAddressStateDd(EmployeesDirectoryPageObject.java:410)
+	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:75)
 	at com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible(EmployeesDirectoryTestCase.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -187,7 +187,7 @@ Session ID: 7726d215352aecb1134cb64ca1a9226d
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>27</td>
+<td>30</td>
 <td>com.hrms.testcases.EmployeesDirectoryTestCase@4d5650ae</td></tr>
 </table><p>
 </body>

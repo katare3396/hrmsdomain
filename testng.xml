@@ -4,7 +4,7 @@
   <test thread-count="5" name="Test">
     <classes>
 <!--      <class name="com.hrms.testcases.LoginTestCase"/>-->
-<!--      <class name="com.hrms.testcases.EmployeesDirectoryTestCase"/>-->
+      <class name="com.hrms.testcases.EmployeesDirectoryTestCase"/>
 
     </classes>
   </test> <!-- Test -->

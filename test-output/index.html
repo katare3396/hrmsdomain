@@ -130,18 +130,18 @@
                   <a name="employeeDirectoryPageVisible">
                   </a> <!-- employeeDirectoryPageVisible -->
                   <span class="method-name">employeeDirectoryPageVisible</span>
-                  <div class="stack-trace">java.lang.AssertionError: org.openqa.selenium.InvalidElementStateException: invalid element state
+                  <div class="stack-trace">java.lang.AssertionError: org.openqa.selenium.ElementNotInteractableException: element not interactable
   (Session info: chrome=113.0.5672.93)
 Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [7726d215352aecb1134cb64ca1a9226d, clearElement {id=B3B6FB0288F86DEAF01256C5351FCF99_element_55}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54456}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54456/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on WINDOWS (7726d215352aecb1134cb64ca1a9226d)] -&gt; xpath: //label[contains(text(),&apos;Full Name&apos;)]]
-Session ID: 7726d215352aecb1134cb64ca1a9226d
-	at com.util.WebBasePage.enter(WebBasePage.java:69)
-	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormFullNameInput(EmployeesDirectoryPageObject.java:266)
-	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:41)
+Command: [6aef66ea9a1fee55341a1cf19decc42d, sendKeysToElement {id=1923FE809BBD2603163C4DAF8EBA5B37_element_121, value=[Ljava.lang.CharSequence;@6e0d16a4}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.93, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: C:\Users\amol\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:54127}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:54127/devtoo..., se:cdpVersion: 113.0.5672.93, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on WINDOWS (6aef66ea9a1fee55341a1cf19decc42d)] -&gt; xpath: //input[@name=&apos;STATE_ID&apos;]]
+Session ID: 6aef66ea9a1fee55341a1cf19decc42d
+	at com.util.WebBasePage.enterforcevalue(WebBasePage.java:102)
+	at com.hrms.pageobject.EmployeesDirectoryPageObject.employeeCreationFormAddressStateDd(EmployeesDirectoryPageObject.java:410)
+	at com.hrms.actions.EmployeesDirectoryActions.formOfmanuallyEmployeeCreate(EmployeesDirectoryActions.java:75)
 	at com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible(EmployeesDirectoryTestCase.java:21)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ... Removed 28 stack frames
@@ -206,12 +206,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'employeeDirectoryPageVisible')
 data.setCell(0, 2, 'com.hrms.testcases.EmployeesDirectoryTestCase')
-data.setCell(0, 3, 27447);
+data.setCell(0, 3, 30362);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 27 seconds</span>
+              <span class="suite-total-time">Total running time: 30 seconds</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -244,27 +244,27 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod(public void com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible())</span>
-                <span class="method-start">10732 ms</span>
+                <span class="method-start">5776 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">employeeDirectoryPageVisible</span>
-                <span class="method-start">11007 ms</span>
+                <span class="method-start">5953 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">reportWrapUp([TestResult name=employeeDirectoryPageVisible status=FAILURE method=EmployeesDirectoryTestCase.emplo...)</span>
-                <span class="method-start">38464 ms</span>
+                <span class="method-start">36331 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
                 <span class="method-name">driverclose</span>
-                <span class="method-start">38638 ms</span>
+                <span class="method-start">36463 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-suite after">
                 <span class="method-name">close</span>
-                <span class="method-start">39019 ms</span>
+                <span class="method-start">36742 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

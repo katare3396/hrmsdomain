@@ -16,6 +16,7 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 
 	public EmployeesDirectoryPageObject(WebDriver driver) {
 		super(driver);
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
@@ -57,163 +58,171 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 
 //object repository of first section -->"personal detail"  employee creation form field
 
-	@FindBy(xpath = "//label[contains(text(),'Full Name')]")
+	@FindBy(xpath = "//input[@id='outlined-required' and @name='FIRST_NAME']")
 	private WebElement Employee_Creation_Form_Full_Name_Input;
 
-	@FindBy(xpath = "//label[contains(text(),'Gender')]")
+	@FindBy(xpath = "//input[@name='GENDER' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input' ]")
 	private WebElement Employee_Creation_Form_Gender_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Marital Status')]")
+	@FindBy(xpath = "//input[@name='MARITIAL_STATUS'  and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Marital_Status_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Date Of Marriage')]")
+	@FindBy(xpath = "//input[@name='MARRIAGE_DATE'  and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Date_Of_Marriage_calendar;
 
-	@FindBy(xpath = "//label[contains(text(),'Date Of Birth')]")
+	@FindBy(xpath = "//input[@name='DATE_OF_BIRTH'  and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Date_Of_Birth_Calendar;
 
-	@FindBy(xpath = "//label[contains(text(),'Nationality')]")
+	@FindBy(xpath = "//input[@name='NATIONALITY'  and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Nationality_Dd;
 
-	@FindBy(xpath = "//input[contains(@name,'MOBILE_NUMBER')]")
+	@FindBy(xpath = "//input[@name='MOBILE_NUMBER'  and @class='MuiOutlinedInput-input MuiInputBase-input css-weuz2y-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_MOBILE_NUMBER_Enter;
 
-	@FindBy(xpath = "//label[contains(text(),'Personal Email ID')]")
+	@FindBy(xpath = "//input[@name='PERSONAL_EMAIL'  and @class='MuiOutlinedInput-input MuiInputBase-input css-weuz2y-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Personal_Email_ID_Enter;
 
-	@FindBy(xpath = "//label[contains(text(),'Aadhar Card')]")
+	@FindBy(xpath = "//input[@name='AADHAR_CARD'  and @class='MuiOutlinedInput-input MuiInputBase-input css-weuz2y-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Aadhar_Card_Enter;
 
-	@FindBy(xpath = "//label[contains(text(),'Joining Date')]")
+	@FindBy(xpath="//input[@name='JOINING_DATE']//following::button[@class='MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1uaxfgw-MuiButtonBase-root-MuiIconButton-root'][1]")
+	private WebElement Employee_Creation_Form_Joining_Date_Calendar_Icon_Click;
+	
+	@FindBy(xpath="//p[contains(text(),'10')]")
+	private WebElement Employee_Creation_Form_Joining_Date_Calendar_Date_Select;
+	
+	@FindBy(xpath="/html/body/div[2]/div[3]/div/div[2]/button[2]/span[1]")
+	private WebElement Employee_Creation_Form_Joining_Date_Calendar_Ok;
+	
+	@FindBy(xpath = "//input[@name='JOINING_DATE'  and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Joining_Date_Calendar;
 
-	@FindBy(xpath = "//label[contains(text(),'Blood Group')]")
+	@FindBy(xpath = "//input[@name='BLOOD_GROUP']")
 	private WebElement Employee_Creation_Form_Blood_Group_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Branch')]")
-	private WebElement Employee_Creation_Form_Branch_Dd;
+
 
 //	object repository of second section -->"detail" employee creation form field
 
-	@FindBy(xpath = "//label[contains(text(),'Branch')]")
+	@FindBy(xpath = "//input[@name='EMPLOYEE_CODE']")
 	private WebElement Employee_Creation_Form_detail_Employee_Code_Input;
 
-	@FindBy(xpath = "//label[contains(text(),'Leave Rule')]")
+	@FindBy(xpath = "//input[@name='LEAVE_TEMPLATE']")
 	private WebElement Employee_Creation_Form_detail_Leave_Rule_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Reporting Manager')]")
+	@FindBy(xpath = "(//input[@class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input'])[2]")
 	private WebElement Employee_Creation_Form_detail_Reporting_Manager_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Shift')]")
+	@FindBy(xpath = "//input[@name='EMPLOYEE_SHIFT' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Shift_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Department')]")
+	@FindBy(xpath = "//input[@name='DEPARTMENT_NAME' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Department_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Designation')]")
+	@FindBy(xpath = "//input[@name='DESIGNATION_ID' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Designation_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Employee Type')]")
+	@FindBy(xpath = "//input[@name='EMPLOYEE_TYPE' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Employee_Type_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Location')]")
+	@FindBy(xpath = "//input[@name='LOCATION_ID' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Location_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Official Email ID')]")
+	@FindBy(xpath = "//input[@name='OFFICE_EMAIL' and @class='MuiOutlinedInput-input MuiInputBase-input css-weuz2y-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Official_Email_ID_Input;
 
-	@FindBy(xpath = "//label[contains(text(),'Employee Status')]")
+	@FindBy(xpath = "//input[@name='EMPLOYEE_STATUS' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_detail_Employee_Status_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Company')]")
+	@FindBy(xpath = "//input[@name='COMPANY_ID' and @class='MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused MuiAutocomplete-input MuiAutocomplete-inputFocused css-d2rydc-MuiInputBase-input-MuiOutlinedInput-input']")
 	private WebElement Employee_Creation_Form_Detail_Company_Dd;
 
-//	object repository of third section -->"work experience" employee creation form field
+//	object repository of third section -->"Address" employee creation form field
 
-	@FindBy(xpath = "//label[contains(text(),'Current Address1')]")
-	private WebElement Employee_Creation_Form_work_exper_Current_Address1_Text;
+	@FindBy(xpath = "//input[@name='CURRENT_ADDRESS_1']")
+	private WebElement Employee_Creation_Form_Address_Current_Address1_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Current Address2')]")
-	private WebElement Employee_Creation_Form_work_exper_Current_Address2_Text;
+	@FindBy(xpath = "//input[@name='CURRENT_ADDRESS_2']")
+	private WebElement Employee_Creation_Form_Address_Current_Address2_Text;
 
-	@FindBy(xpath = "(//label[contains(text(),'Country')])[1]")
-	private WebElement Employee_Creation_Form_work_exper_Country_Dd;
+	@FindBy(xpath = "//input[@name='COUNTRY_ID']")
+	private WebElement Employee_Creation_Form_Address_Country_Dd;
 
-	@FindBy(xpath = "(//label[contains(text(),'State')])[1]")
-	private WebElement Employee_Creation_Form_work_exper_State_Dd;
+	@FindBy(xpath = "//input[@name='STATE_ID']")
+	private WebElement Employee_Creation_Form_Address_State_Dd;
 
-	@FindBy(xpath = "(//label[contains(text(),'City')])[1]")
-	private WebElement Employee_Creation_Form_work_exper_City_Dd;
+	@FindBy(xpath = "//input[@id='mui-80195']")
+	private WebElement Employee_Creation_Form_Address_City_Dd;
 
-	@FindBy(xpath = "(//label[contains(text(),'Zip')])[1]")
-	private WebElement Employee_Creation_Form_work_exper_Zip_Input;
+	@FindBy(xpath = "//input[@name='CURRENT_ZIP_CODE']")
+	private WebElement Employee_Creation_Form_Address_Zip_Input;
 
-	// object repository of third section -->"work experience" employee creation
+	// object repository of third section -->"Address" employee creation
 	// form field --> checklist of Same_As_Current
 
 	@FindBy(xpath = "//input[@name='SAME_AS_CURRENT']")
-	private WebElement Employee_Creation_Form_work_exper_Same_As_Current_Cb;
+	private WebElement Employee_Creation_Form_Address_Same_As_Current_Cb;
 
 //	object repository of four section -->"Bank Name" employee creation form field  
 
-	@FindBy(xpath = "//label[contains(text(),'Payment Type')]")
+	@FindBy(xpath = "//input[@name='PAYMENT_TYPE']")
 	private WebElement Employee_Creation_Form_Bank_Name_Payment_Type_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),\"Bank Name\")]")
+	@FindBy(xpath = "//input[@name='BANK_NAME']")
 	private WebElement Employee_Creation_Form_Bank_Name_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Account No')]")
+	@FindBy(xpath = "//input[@name='ACCOUNT_NUMBER']")
 	private WebElement Employee_Creation_Form_Bank_Name_Account_No_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'IFSC code')]")
+	@FindBy(xpath = "//input[@name='IFSC_CODE']")
 	private WebElement Employee_Creation_Form_Bank_Name_IFSC_code_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Account Holder Name')]")
+	@FindBy(xpath = "//input[@name='ACC_HOLDER_NAME']")
 	private WebElement Employee_Creation_Form_Bank_Name_Account_Holder_Name_Text;
 
 //	object repository of five section -->"Emergency Detail" employee creation form field  
 
-	@FindBy(xpath = "//label[contains(text(),'Name')]")
+	@FindBy(xpath = "//input[@name='EMERGENCY_NAME']")
 	private WebElement Employee_Creation_Form_Emergency_Name_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Relationship')]")
+	@FindBy(xpath = "//input[@name='EMEGENCY_RELATION']")
 	private WebElement Employee_Creation_Form_Emergency_Relationship_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Address')]")
+	@FindBy(xpath = "//input[@name='EMEGENCY_ADDRES']")
 	private WebElement Employee_Creation_Form_Emergency_Address_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Email')]")
+	@FindBy(xpath = "//input[@name='EMEGENCY_EMAIL']")
 	private WebElement Employee_Creation_Form_Emergency_Email_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Mobile No.')]")
+	@FindBy(xpath = "//input[@name='EMEGENCY_MOBILE']")
 	private WebElement Employee_Creation_Form_Emergency_Mobile_No_Text;
 
 //	object repository of six section -->"Qualification" employee creation form field 
 
-	@FindBy(xpath = "//label[contains(text(),'Diploma/Degree Name')]")
+	@FindBy(xpath = "//input[@name='DEGREE_NAME']")
 	private WebElement Employee_Creation_Form_Qualification_Diploma_Name_Dd;
 
-	@FindBy(xpath = "//label[contains(text(),'Institution Name')]")
+	@FindBy(xpath = "//input[@name='INSTITUTION_NAME']")
 	private WebElement Employee_Creation_Form_Qualification_Institution_Name_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Passing Year')]")
+	@FindBy(xpath = "//input[@name='PASSING_YEAR']")
 	private WebElement Employee_Creation_Form_Qualification_Passing_Year_Text;
 
-	@FindBy(xpath = "//label[contains(text(),'Percentage')]")
+	@FindBy(xpath = "//input[@name='PERCENTAGE']")
 	private WebElement Employee_Creation_Form_Qualification_Percentage_Text;
 
 //	object repository of seven section -->"Work Experience" employee creation form field 
 
-	@FindBy(xpath = "//label[contains(text(),'Previous Company Name')]")
+	@FindBy(xpath = "//input[@name='PREV_COMPANY_NAME']")
 	private WebElement Employee_Creation_Form_WE_Previous_Company_Name_Txt;
 
-	@FindBy(xpath = "//label[contains(text(),'Job Title')]")
+	@FindBy(xpath = "//input[@name='JOB_TITLE']")
 	private WebElement Employee_Creation_Form_WE_Job_Title_Txt;
 
-	@FindBy(xpath = "//label[contains(text(),'From Date')]")
+	@FindBy(xpath = "//input[@name='FROM_DATE']")
 	private WebElement Employee_Creation_Form_WE_From_Date_Calendar;
 
-	@FindBy(xpath = "//label[contains(text(),'To Date')]")
+	@FindBy(xpath = "//input[@name='TO_DATE']")
 	private WebElement Employee_Creation_Form_WE_TO_Date_Calendar;
 
 //Action repository of path of employee directory	
@@ -262,33 +271,33 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 
 //Action repository of first section -->"personal detail"  employee creation form field
 
-	public void employeeCreationFormFullNameInput() {
+	public void employeeCreationFormFullNameInput() {		
 		enter(Employee_Creation_Form_Full_Name_Input, prop.getProperty("Full_Name_Input"),
 				"Employee_Creation_Form_Full_Name_Input", 60);
-
 	}
 
 	public void employeeCreationFormGenderDd() {
-		enter(Employee_Creation_Form_Gender_Dd, prop.getProperty("Gender_Dd"), "Employee_Creation_Form_Gender_Dd", 40);
+		enterforcevalue(Employee_Creation_Form_Gender_Dd, prop.getProperty("Gender_Dd"), "Employee_Creation_Form_Gender_Dd", 40);
 	}
 
 	public void employeeCreationFormMaritalStatusDd() {
-		enter(Employee_Creation_Form_Marital_Status_Dd, prop.getProperty("Marital_Status_Dd"),
-				"Employee_Creation_Form_Marital_Status_Dd", 40);
+		
+		enterforcevalue(Employee_Creation_Form_Marital_Status_Dd, prop.getProperty("Marital_Status_Dd"),
+				"Employee_Creation_Form_Marital_Status_Dd", 60);
 	}
 
 	public void employeeCreationFormDateOfMarriagecalendar() {
-		enter(Employee_Creation_Form_Date_Of_Marriage_calendar, prop.getProperty("Date_Of_Marriage_calendar"),
+		enterforcevalue(Employee_Creation_Form_Date_Of_Marriage_calendar, prop.getProperty("Date_Of_Marriage_calendar"),
 				"Employee_Creation_Form_Date_Of_Marriage_calendar", 40);
 	}
 
 	public void employeeCreationFormDateOfBirthCalendar() {
-		enter(Employee_Creation_Form_Date_Of_Birth_Calendar, prop.getProperty("Date_Of_Birth_Calendar"),
+		enterforcevalue(Employee_Creation_Form_Date_Of_Birth_Calendar, prop.getProperty("Date_Of_Birth_Calendar"),
 				"Employee_Creation_Form_Date_Of_Birth_Calendar", 40);
 	}
 
 	public void employeeCreationFormNationalityDd() {
-		enter(Employee_Creation_Form_Nationality_Dd, prop.getProperty("Nationality_Dd"),
+		enterforcevalue(Employee_Creation_Form_Nationality_Dd, prop.getProperty("Nationality_Dd"),
 				"Employee_Creation_Form_Nationality_Dd", 40);
 	}
 
@@ -308,8 +317,12 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	}
 
 	public void employeeCreationFormJoiningDateCalendar() {
-		enter(Employee_Creation_Form_Joining_Date_Calendar, prop.getProperty("Joining_Date_Calendar"),
-				"Employee_Creation_Form_Joining_Date_Calendar", 40);
+		click(Employee_Creation_Form_Joining_Date_Calendar_Icon_Click, "Employee_Creation_Form_Joining_Date_Calendar_Icon_Click", 40);
+		click(Employee_Creation_Form_Joining_Date_Calendar_Date_Select, "Employee_Creation_Form_Joining_Date_Calendar_Date_Select", 40);
+//		click(Employee_Creation_Form_Joining_Date_Calendar_Ok, "Employee_Creation_Form_Joining_Date_Calendar_Ok", 40);
+		clickByJavascript(Employee_Creation_Form_Joining_Date_Calendar_Ok, "Employee_Creation_Form_Joining_Date_Calendar_Ok", 40);
+//		enter(Employee_Creation_Form_Joining_Date_Calendar, prop.getProperty("Joining_Date_Calendar"),
+//				"Employee_Creation_Form_Joining_Date_Calendar", 40);
 	}
 
 	public void employeeCreationFormBloodGroupDd() {
@@ -317,9 +330,7 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 				"Employee_Creation_Form_Blood_Group_Dd", 40);
 	}
 
-	public void Employee_Creation_Form_Branch_Dd() {
-		enter(Employee_Creation_Form_Branch_Dd, prop.getProperty("Branch_Dd"), "Employee_Creation_Form_Branch_Dd", 40);
-	}
+
 
 //	Action  repository of second section -->"detail" employee creation form field
 
@@ -329,37 +340,37 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	}
 
 	public void employeeCreationFormdetailLeaveRuleDd() {
-		enter(Employee_Creation_Form_detail_Leave_Rule_Dd, prop.getProperty("Leave_Rule_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Leave_Rule_Dd, prop.getProperty("Leave_Rule_Dd"),
 				"Employee_Creation_Form_detail_Leave_Rule_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailReportingManagerDd() {
-		enter(Employee_Creation_Form_detail_Reporting_Manager_Dd, prop.getProperty("Reporting_Manager_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Reporting_Manager_Dd, prop.getProperty("Reporting_Manager_Dd"),
 				"Employee_Creation_Form_detail_Reporting_Manager_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailShiftDd() {
-		enter(Employee_Creation_Form_detail_Shift_Dd, prop.getProperty("Shift_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Shift_Dd, prop.getProperty("Shift_Dd"),
 				"Employee_Creation_Form_detail_Shift_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailDepartmentDd() {
-		enter(Employee_Creation_Form_detail_Department_Dd, prop.getProperty("Department_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Department_Dd, prop.getProperty("Department_Dd"),
 				"Employee_Creation_Form_detail_Department_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailDesignationDd() {
-		enter(Employee_Creation_Form_detail_Designation_Dd, prop.getProperty("Designation_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Designation_Dd, prop.getProperty("Designation_Dd"),
 				"Employee_Creation_Form_detail_Designation_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailEmployeeTypeDd() {
-		enter(Employee_Creation_Form_detail_Employee_Type_Dd, prop.getProperty("Employee_Type_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Employee_Type_Dd, prop.getProperty("Employee_Type_Dd"),
 				"Employee_Creation_Form_detail_Employee_Type_Dd", 40);
 	}
 
 	public void employeeCreationFormdetailLocation_Dd() {
-		enter(Employee_Creation_Form_detail_Location_Dd, prop.getProperty("Location_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Location_Dd, prop.getProperty("Location_Dd"),
 				"Employee_Creation_Form_detail_Location_Dd", 40);
 	}
 
@@ -369,58 +380,58 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	}
 
 	public void employeeCreationFormdetailEmployeeStatusDd() {
-		enter(Employee_Creation_Form_detail_Employee_Status_Dd, prop.getProperty("Employee_Status_Dd"),
+		enterforcevalue(Employee_Creation_Form_detail_Employee_Status_Dd, prop.getProperty("Employee_Status_Dd"),
 				"Employee_Creation_Form_detail_Employee_Status_Dd", 40);
 	}
 
 	public void employeeCreationFormDetailCompanyDd() {
-		enter(Employee_Creation_Form_Detail_Company_Dd, prop.getProperty("Company_Dd"),
+		enterforcevalue(Employee_Creation_Form_Detail_Company_Dd, prop.getProperty("Company_Dd"),
 				"Employee_Creation_Form_Detail_Company_Dd", 40);
 	}
 
-//	Action repository of third section -->"work experience" employee creation form field
+//	Action repository of third section -->"Address" employee creation form field
 
-	public void employeeCreationFormworkexperCurrentAddress1Text() {
-		enter(Employee_Creation_Form_work_exper_Current_Address1_Text, prop.getProperty("Current_Address1_Text"),
-				"Employee_Creation_Form_work_exper_Current_Address1_Text", 40);
+	public void employeeCreationFormAddressCurrentAddress1Text() {
+		enter(Employee_Creation_Form_Address_Current_Address1_Text, prop.getProperty("Current_Address1_Text"),
+				"Employee_Creation_Form_Address_Current_Address1_Text", 40);
 	}
 
-	public void employeeCreationFormworkexperCurrentAddress2Text() {
-		enter(Employee_Creation_Form_work_exper_Current_Address2_Text, prop.getProperty("Current_Address2_Text"),
-				"Employee_Creation_Form_work_exper_Current_Address2_Text", 40);
+	public void employeeCreationFormAddressCurrentAddress2Text() {
+		enter(Employee_Creation_Form_Address_Current_Address2_Text, prop.getProperty("Current_Address2_Text"),
+				"Employee_Creation_Form_Address_Current_Address2_Text", 40);
 	}
 
-	public void employeeCreationFormworkexperCountry_Dd() {
-		enter(Employee_Creation_Form_work_exper_Country_Dd, prop.getProperty("work_exper_Country_Dd"),
-				"Employee_Creation_Form_work_exper_Country_Dd", 40);
+	public void employeeCreationFormAddressCountryDd() {
+		enterforcevalue(Employee_Creation_Form_Address_Country_Dd, prop.getProperty("work_exper_Country_Dd"),
+				"Employee_Creation_Form_Address_Country_Dd", 40);
 	}
 
-	public void employeeCreationFormworkexperStateDd() {
-		enter(Employee_Creation_Form_work_exper_State_Dd, prop.getProperty("work_exper_State_Dd"),
-				"Employee_Creation_Form_work_exper_State_Dd", 40);
+	public void employeeCreationFormAddressStateDd() {
+		enterforcevalue(Employee_Creation_Form_Address_State_Dd, prop.getProperty("work_exper_State_Dd"),
+				"Employee_Creation_Form_Address_State_Dd", 40);
 	}
 
-	public void employeeCreationFormworkexperCityDd() {
-		enter(Employee_Creation_Form_work_exper_City_Dd, prop.getProperty("work_exper_City_Dd"),
-				"Employee_Creation_Form_work_exper_City_Dd", 40);
+	public void employeeCreationFormAddressCityDd() {
+		enterforcevalue(Employee_Creation_Form_Address_City_Dd, prop.getProperty("work_exper_City_Dd"),
+				"Employee_Creation_Form_Address_City_Dd", 40);
 	}
 
-	public void employeeCreationFormworkexperZipInput() {
-		enter(Employee_Creation_Form_work_exper_Zip_Input, prop.getProperty("work_exper_Zip_Input"),
-				"Employee_Creation_Form_work_exper_Zip_Input", 40);
+	public void employeeCreationFormAddressZipInput() {
+		enter(Employee_Creation_Form_Address_Zip_Input, prop.getProperty("work_exper_Zip_Input"),
+				"Employee_Creation_Form_Address_Zip_Input", 40);
 	}
 
 //	Action repository of third section -->"work experience" employee creation form field  --> checklist of Same_As_Current
 
-	public void employeeCreationFormworkexperSameAsCurrentCb() {
-		click(Employee_Creation_Form_work_exper_Same_As_Current_Cb,
-				"Employee_Creation_Form_work_exper_Same_As_Current_Cb", 40);
+	public void employeeCreationFormAddressSameAsCurrentCb() {
+		click(Employee_Creation_Form_Address_Same_As_Current_Cb,
+				"Employee_Creation_Form_Address_Same_As_Current_Cb", 40);
 	}
 
 //	Action repository of four section -->"Bank Name" employee creation form field  
 
 	public void employeeCreationFormBankNamePaymentTypeDd() {
-		enter(Employee_Creation_Form_Bank_Name_Payment_Type_Dd, prop.getProperty("Bank_Name_Payment_Type_Dd"),
+		enterforcevalue(Employee_Creation_Form_Bank_Name_Payment_Type_Dd, prop.getProperty("Bank_Name_Payment_Type_Dd"),
 				"Employee_Creation_Form_Bank_Name_Payment_Type_Dd", 40);
 	}
 
@@ -475,7 +486,7 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 //	Action repository of six section -->"Qualification" employee creation form field 
 
 	public void employeeCreationFormQualificationDiplomaNameDd() {
-		enter(Employee_Creation_Form_Qualification_Diploma_Name_Dd, prop.getProperty("Qualification_Diploma_Name_Dd"),
+		enterforcevalue(Employee_Creation_Form_Qualification_Diploma_Name_Dd, prop.getProperty("Qualification_Diploma_Name_Dd"),
 				"Employee_Creation_Form_Qualification_Diploma_Name_Dd", 40);
 	}
 

@@ -40,6 +40,7 @@ public class EmployeesDirectoryActions {
 //		first section -->"personal detail"  employee creation form field
 		employeesdirectorypageObject.employeeCreationFormFullNameInput();
 		employeesdirectorypageObject.employeeCreationFormGenderDd();
+		employeesdirectorypageObject.employeeCreationFormJoiningDateCalendar();
 		employeesdirectorypageObject.employeeCreationFormMaritalStatusDd();
 		employeesdirectorypageObject.employeeCreationFormDateOfMarriagecalendar();
 		employeesdirectorypageObject.employeeCreationFormDateOfBirthCalendar();
@@ -47,9 +48,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormMOBILENUMBEREnter();
 		employeesdirectorypageObject.employeeCreationFormPersonalEmailIDEnter();
 		employeesdirectorypageObject.employeeCreationFormAadharCardEnter();
-		employeesdirectorypageObject.employeeCreationFormJoiningDateCalendar();
 		employeesdirectorypageObject.employeeCreationFormBloodGroupDd();
-		employeesdirectorypageObject.Employee_Creation_Form_Branch_Dd();
 
 		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
 
@@ -64,18 +63,19 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormdetailLocation_Dd();
 		employeesdirectorypageObject.employeeCreationFormdetailOfficial_Email_ID_Input();
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeStatusDd();
+		employeesdirectorypageObject.employeeCreationFormDetailCompanyDd();
 
 		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
 
-//	 third section -->"work experience" employee creation form field
+//	 third section -->"Address" employee creation form field
 
-		employeesdirectorypageObject.employeeCreationFormworkexperCurrentAddress1Text();
-		employeesdirectorypageObject.employeeCreationFormworkexperCurrentAddress2Text();
-		employeesdirectorypageObject.employeeCreationFormworkexperCountry_Dd();
-		employeesdirectorypageObject.employeeCreationFormworkexperStateDd();
-		employeesdirectorypageObject.employeeCreationFormworkexperCityDd();
-		employeesdirectorypageObject.employeeCreationFormworkexperZipInput();
-		employeesdirectorypageObject.employeeCreationFormworkexperSameAsCurrentCb();
+		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress1Text();
+		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress2Text();
+		employeesdirectorypageObject.employeeCreationFormAddressCountryDd();
+		employeesdirectorypageObject.employeeCreationFormAddressStateDd();
+		employeesdirectorypageObject.employeeCreationFormAddressCityDd();
+		employeesdirectorypageObject.employeeCreationFormAddressZipInput();
+		employeesdirectorypageObject.employeeCreationFormAddressSameAsCurrentCb();
 
 		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
 
