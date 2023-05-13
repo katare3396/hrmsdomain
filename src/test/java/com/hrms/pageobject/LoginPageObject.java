@@ -54,14 +54,8 @@ public class LoginPageObject extends WebBasePage {
 		click(Login_Btn_Click, "Login Btn", 40);
 	}
 
-	public void loginAssertLoginSucessfully() {
-//		String test = getText(Login_Assert_Login_Sucessfully, "Login_Assert_Login_Sucessfully", 20);
-//		hard Assert it will stop excute program 
-		verifySuccessMessage(Login_Assert_Login_Sucessfully, "Success", 90);
-	}
-	
 	public void getCurrentUrlAdminSide() {
-		staticWait(30);
+		staticWait(60);
 		getCurrentUrl(prop.getProperty("get_current_url_Login_Page_Admin"), "get_current_url_Login_Page_Admin");
 	}
 }

@@ -5,6 +5,8 @@ import static com.reporting.ComplexReportFactory.getTest;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -19,6 +21,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -68,26 +71,27 @@ public class WebBasePage extends WaitStatement {
 //			screenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
+
 			Assert.fail("" + e);
 
 			e.printStackTrace();
 		}
 	}
 
-	public void enterforcevalue(WebElement ele, String value, String name, int duration) {
+	public void enterForceValueDd(WebElement ele, String value, String name, int duration, int ClickArrowBtnTime) {
 		try {
 			WebElement element = findElementVisibility(ele, duration);
-			staticWait(200);
-//			JavascriptExecutor js=(JavascriptExecutor) driver;       
-//		    String	enterTestData= prop.getProperty("enterName");
-//		    WebElement el = ele;
-//			js.executeScript("document.getElement"+el+".value=enterTestData");  
-//			js.executeScript("argument.[0].value="+enterTestData+","+el+"");  
-//			jse.executeScript("arguments[0].scrollIntoView();", element);
-//			element.clear();
-			element.click();
-			element.sendKeys(value);
-			staticWait(200);
+			staticWait(600);
+
+			Actions action = new Actions(driver);
+			action.moveToElement(element).click();
+			action.sendKeys(value);
+			action.build().perform();
+			for (int r = 0; r < ClickArrowBtnTime; ClickArrowBtnTime--) {
+				staticWait(7000);
+				element.sendKeys(Keys.ARROW_DOWN);
+			}
+			staticWait(500);
 			element.sendKeys(Keys.ENTER);
 			getTest().log(LogStatus.PASS, name + " entered with value - " + value);
 //			logger.info(name + " entered with value - " + value);
@@ -104,42 +108,115 @@ public class WebBasePage extends WaitStatement {
 			e.printStackTrace();
 		}
 	}
+
+//	calendar setting config
+
+	@FindBy(xpath = "(//button[@class='MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root MuiPickersToolbarButton-toolbarBtn css-qgn502-MuiButtonBase-root-MuiButton-root'])[1]")
+	private WebElement Calendar_Year_Click;
+
+	private static final String Calendar_year_Select = "//div[contains(text(),'%s')]";
+
+	private static final String Calendar_Month_select = "//div[contains(text(),'%s')]";
+
+	private static final String Calendar_Date_Select = "//p[contains(text(),'%s')]";
+
+	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/button[2]/span[1]")
+	private WebElement Calendar_Ok_Btn;
+
+	public void calendar(WebElement ele, String name, int duration, String enterYear, String enterMonth,
+			String EnterDate) {
+		staticWait(600);
+		try {
+			WebElement element = findElementVisibility(ele, duration);
+			staticWait(700);
+			element.click();
+
+//			year click
+			WebElement yearclick = findElementClickable(Calendar_Year_Click, 40);
+			yearclick.click();
+
+//			year select
+			String year = String.format(Calendar_year_Select, enterYear);
+			driver.findElement(By.xpath(year)).click();
+
+//          month select            
+			String month = String.format(Calendar_Month_select, enterMonth);
+			driver.findElement(By.xpath(month)).click();
+
+//			date select 
+			String date = String.format(Calendar_Date_Select, EnterDate);
+			driver.findElement(By.xpath(date)).click();
+
+//			ok btn click
+			WebElement okBtnClick = findElementClickable(Calendar_Ok_Btn, 10);
+			okBtnClick.click();
+
+			getTest().log(LogStatus.PASS, name + " entered with value" + " = " + " year- " + enterYear + " Month- "
+					+ enterMonth + " Date- " + EnterDate);
+//			logger.info(name + " entered with value - " + value);
+
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, pageName + name + " not entered with value - " + ", error exist - " + e);
+//			logger.info(name + " not entered with value - " + value + ", error exist - " + e);
+
+//			screenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+			Assert.fail("" + e);
+
+			e.printStackTrace();
+		}
+	}
+
 	public void click(WebElement ele, String name, int timeout) {
-		WebElement element = findElementVisibility(ele, timeout);
-		staticWait(400);
-		if (element != null) {
-			try {
-				element.click();
-				getTest().log(LogStatus.PASS, name + " clicked");
+		try {
+			WebElement element = findElementVisibility(ele, timeout);
+			staticWait(400);
+			if (element != null) {
+				try {
+					element.click();
+					getTest().log(LogStatus.PASS, name + " clicked");
 //				logger.info(name + " clicked ");
-			} catch (Exception e) {
-				getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
+				} catch (Exception e) {
+					getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
 //				logger.info(name + " not clicked");
 
 //				screenshot screen
+					takeScreenshot(new Object() {
+					}.getClass().getEnclosingMethod().getName());
+
+					Assert.fail(name + " -  element not clickable");
+				}
+			} else {
+				getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
+//			logger.info(name + " not clicked");
+
+//			takescreenshot function
 				takeScreenshot(new Object() {
 				}.getClass().getEnclosingMethod().getName());
 
-				Assert.fail(name + " -  element not clickable");
+				Assert.fail(name + " -  element not clikabke");
 			}
-		} else {
-			getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
-//			logger.info(name + " not clicked");
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, "Error Occurred. " + e);
+//			logger.info("Error Occurred. " + e);
 
 //			takescreenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
 
-			Assert.fail(name + " -  element not clikabke");
+			e.printStackTrace();
+
+			Assert.fail("" + e);
 		}
 	}
 
 	public String getText(final WebElement ele, String name, int timeout) {
 		try {
 			WebElement element = findElementVisibility(ele, timeout);
-			String getText = ele.getText();
+			String getText = element.getText();
 			getTest().log(LogStatus.PASS, " Text displayed is  - " + getText);
-//			logger.info(" Text displayed is  - " + getText);
+//			logger.info(" Text displayed is  = " + getText);
 			return getText;
 		} catch (Exception e) {
 			getTest().log(LogStatus.FAIL, "Error Occurred. " + e);
@@ -265,6 +342,7 @@ public class WebBasePage extends WaitStatement {
 	}
 
 	public void hover(final WebElement element, String name, int time) {
+		staticWait(500);
 		WebElement ele = findElementVisibility(element, time);
 		if (ele != null) {
 			Actions action = new Actions(driver);
@@ -328,9 +406,12 @@ public class WebBasePage extends WaitStatement {
 	}
 
 	public void pageRefresh(String name) {
+		staticWait(300);
 		driver.navigate().refresh();
+		staticWait(300);
 		String pageTitle = driver.getTitle();
-		logger.info(pageTitle + "Page is" + name);
+		System.out.println(pageTitle);
+//		logger.info(pageTitle + "Page is" + name);
 	}
 
 	public void pageNavigate(String pageUrl, String name) {
@@ -338,46 +419,67 @@ public class WebBasePage extends WaitStatement {
 		logger.info("Page Url is :: " + pageUrl + name);
 	}
 
+	public WebElement getTextByXpath(String xpathFormat, String xpathText, String name) {
+		staticWait(500);
+		WebElement fullNameInput = null;
+		try {
+			String xpath = String.format(xpathFormat, xpathText);
+			fullNameInput = driver.findElement(By.xpath(xpath));
+			getTest().log(LogStatus.PASS, xpathText + " is successfully displayed");
+		} catch (Exception e) {
+			e.printStackTrace();
+			getTest().log(LogStatus.FAIL, xpathText + "is not successfully displayed");
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+//		logger.debug("Success message is not displayed");
+			Assert.fail(name);
+		}
+		return fullNameInput;
+	}
+
 	public String verifySuccessMessage(WebElement ele, String messageToVerify, int timeout) {
+		staticWait(300);
 		String updateSuccessMsg = null;
-		
 		WebElement element = findElementVisibility(ele, timeout);
-		if (element != null) {
 
 		try {
-//			findElementVisibility(element, timeout);
+			findElementVisibility(element, timeout);
 //			 element = findElementsVisibility((by));
-			updateSuccessMsg = getText(element, "message", 80);
+			updateSuccessMsg = getText(element, "message", 200);
+
+//			Actions class move to elements
+			
+			Actions action = new Actions(driver);
+			action.moveToElement(element).build().perform();
+			
 //			logger.debug("Validation message is :: " + updateSuccessMsg);
-			if (updateSuccessMsg.equals(messageToVerify)) {
+			if (updateSuccessMsg.equalsIgnoreCase(messageToVerify)) {
 				getTest().log(LogStatus.PASS, updateSuccessMsg + " is successfully displayed");
 			} else {
-				getTest().log(LogStatus.FAIL, "Success message is not successfully displayed");
+				getTest().log(LogStatus.FAIL, messageToVerify + "is not successfully displayed");
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
 //				logger.debug("Success message is not displayed");
 				Assert.fail("successMessage");
 
 //				takescreenshot function
 
-				takeScreenshot(new Object() {
-				}.getClass().getEnclosingMethod().getName());
 				updateSuccessMsg = "";
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		}else {
-				getTest().log(LogStatus.FAIL, "Element is not present");
+			getTest().log(LogStatus.FAIL, "Success message is not successfully displayed");
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
 //				logger.debug("Success message is not displayed");
-				Assert.fail("successMessage");
 
+			Assert.fail("successMessage");
+			e.printStackTrace();
 //				takescreenshot function
 
-				takeScreenshot(new Object() {
-				}.getClass().getEnclosingMethod().getName());
-				updateSuccessMsg = "";
+
 		}
 		return updateSuccessMsg;
-		
+
 	}
 
 	public void verifyMultiSelectValues(By by, String messageToVerify, Duration time) {
@@ -425,4 +527,96 @@ public class WebBasePage extends WaitStatement {
 			Assert.fail("VerifyCharactersValidation");
 		}
 	}
+
+	public String nameGenerator() {
+		staticWait(300);
+		String givenName = "";
+		// Date time formatter
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMddHHmmss");
+		// Local Date
+		LocalDateTime now = LocalDateTime.now();
+
+		String today = dtf.format(now);
+		String[] name = today.split("");
+
+		String[] names = new String[10];
+		for (int i = 0; i < name.length; i++) {
+			switch (name[i]) {
+			case "0":
+				names[i] = "A";
+				break;
+			case "1":
+				names[i] = "B";
+				break;
+			case "2":
+				names[i] = "C";
+				break;
+			case "3":
+				names[i] = "D";
+				break;
+			case "4":
+				names[i] = "F";
+				break;
+			case "5":
+				names[i] = "G";
+				break;
+			case "6":
+				names[i] = "H";
+				break;
+			case "7":
+				names[i] = "J";
+				break;
+			case "8":
+				names[i] = "K";
+				break;
+			case "9":
+				names[i] = "L";
+				break;
+			default:
+				names[i] = "Z";
+				break;
+			}
+		}
+		givenName = String.join("", names);
+//		logger.info("Name generated is " + givenName);
+		return givenName;
+
+	}
+
+//	public void List(WebElement ele, String name, int duration) {
+//		List<WebElement> elementList = null;
+//		try {
+//			WebElement element = findElementVisibility(ele, duration);
+//			staticWait(600);
+//			
+//			List<WebElement> elementList =element.ge
+//			
+//
+//			for(WebElement elementget  : elementList) {
+//			    // assuming the value you want to compare is the element's text
+//			    String elementValue = elementget.getText(); 
+//			    System.out.println(elementValue);
+//
+//				if(elementValue.equalsIgnoreCase(prop.getProperty("Full_Name"))) {
+//					getTest().log(LogStatus.PASS, name + " entered with value - " + name + elementValue);
+//
+//				}
+//			}
+//
+////			getTest().log(LogStatus.PASS, name + " entered with value - " );
+////			logger.info(name + " entered with value - " + value);
+//		} catch (Exception e) {
+////			getTest().log(LogStatus.FAIL,
+////					pageName + name + " not entered with value - "  + ", error exist - " + e);
+////			logger.info(name + " not entered with value - " + value + ", error exist - " + e);
+//
+////			screenshot function
+//			takeScreenshot(new Object() {
+//			}.getClass().getEnclosingMethod().getName());
+//			Assert.fail("" + e);
+//
+//			e.printStackTrace();
+//		}
+//	}
+
 }

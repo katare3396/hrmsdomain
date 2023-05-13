@@ -42,6 +42,10 @@ public class WaitStatement {
 		}
 	}
 
+	
+	
+	
+	
 	public WebElement findElementClickable(final WebElement ele, int time) {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));

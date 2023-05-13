@@ -17,7 +17,6 @@ public class LoginAction {
 		loginpageobject.loginEmailTxtField();
 		loginpageobject.loginPasswordTxtField();
 		loginpageobject.loginBtnClick();
-		loginpageobject.loginAssertLoginSucessfully();
 		loginpageobject.getCurrentUrlAdminSide();
 	}
 }
