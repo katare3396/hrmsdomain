@@ -55,7 +55,7 @@ public class LoginPageObject extends WebBasePage {
 	}
 
 	public void getCurrentUrlAdminSide() {
-		staticWait(60);
+		staticWait(500);
 		getCurrentUrl(prop.getProperty("get_current_url_Login_Page_Admin"), "get_current_url_Login_Page_Admin");
 	}
 }

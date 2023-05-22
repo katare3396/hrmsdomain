@@ -80,61 +80,38 @@ public class BrowserLaunch {
 			} else if (browsers.equalsIgnoreCase("edge")) {
 
 				// Setup ChromeDriver using WebDriverManager
-				EdgeOptions option = new EdgeOptions();
+				EdgeOptions edgeOptions = new EdgeOptions();
 
 //	headless run Edge    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-					option.addArguments("headless");
-					option.setHeadless(true);
-					option.addArguments("window-size=1920x1000");
+					edgeOptions.addArguments("headless");
+					edgeOptions.setHeadless(true);
+					edgeOptions.addArguments("window-size=1920x1000");
 					WebDriverManager.edgedriver().setup();
-					driver = new EdgeDriver(option);
+					driver = new EdgeDriver(edgeOptions);
 					System.out.println("Browser is opened in Headless mode.");
 				} else {
 					System.out.println("Browser is opened in Browser mode.");
 					WebDriverManager.edgedriver().setup();
-					driver = new EdgeDriver();
-				}
-
-			} else if (browsers.equalsIgnoreCase("opera")) {
-
-//	 headless run Opera    true---headless mode  , false -- browser mode
-				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-//			OperaOptions option = new OperaOptions();
-//			option.addArguments("headless");
-//			option.setHeadless(true);
-//			option.addArguments("window-size=1920x1000");
-//			option.AddExtension("");
-//			option.BinaryLocation ="";
-//			driver = new OperaDriver(option);
-					System.out.println("Browser is opened in Headless mode.");
-				} else {
-					System.out.println("Browser is opened in Browser mode.");
-//					driver = new OperaDriver();
-
+					driver = new EdgeDriver(edgeOptions);
 				}
 
 			} else if (browsers.equalsIgnoreCase("firefox")) {
 
-//     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
-				String firefoxPath = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 
 				// Setup Firefox using WebDriverManager
-				FirefoxOptions option = new FirefoxOptions();
+				FirefoxOptions firefoxOptions = new FirefoxOptions();
 
 //	 headless run Firefox    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-					option.setBinary(firefoxPath);
-					option.addArguments("--headless");
-					option.addArguments("window-size=1920x1000");
-					option.setBinary(firefoxPath);
+					firefoxOptions.addArguments("--headless");
+					firefoxOptions.addArguments("window-size=1920x1000");
 					System.out.println("Browser is opened in Headless mode.");
-					driver = new FirefoxDriver(option);
+					driver = new FirefoxDriver(firefoxOptions);
 				} else {
-					option.setBinary(firefoxPath);
 					System.out.println("Browser is opened in Browser mode.");
 					WebDriverManager.firefoxdriver().setup();
-					driver = new FirefoxDriver(option);
+					driver = new FirefoxDriver(firefoxOptions);
 				}
 
 			} else if (browsers.equalsIgnoreCase("safari")) {

@@ -5,10 +5,9 @@
     <classes>
       <class name="com.hrms.testcases.EmployeesDirectoryTestCase">
         <methods>
-          <include name="employeeDirctoryNotFilledMandatoryFieldOfJoiningDateIsNotFillThanThrowError"/>
           <include name="beforeMethod"/>
           <include name="close"/>
-          <include name="employeeDirectoryPageVisible"/>
+          <include name="employeeDiectoyarrowBthClick"/>
           <include name="driverclose"/>
           <include name="reportWrapUp"/>
           <include name="browserlaunch"/>

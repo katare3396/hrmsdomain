@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -51,7 +52,7 @@ public class WebBasePage extends WaitStatement {
 	public void enter(WebElement ele, String value, String name, int duration) {
 		try {
 			WebElement element = findElementVisibility(ele, duration);
-			staticWait(200);
+			staticWait(800);
 //			JavascriptExecutor js=(JavascriptExecutor) driver;       
 //		    String	enterTestData= prop.getProperty("enterName");
 //		    WebElement el = ele;
@@ -62,6 +63,7 @@ public class WebBasePage extends WaitStatement {
 			element.click();
 			element.sendKeys(value);
 			getTest().log(LogStatus.PASS, name + " entered with value - " + value);
+
 //			logger.info(name + " entered with value - " + value);
 		} catch (Exception e) {
 			getTest().log(LogStatus.FAIL,
@@ -120,11 +122,16 @@ public class WebBasePage extends WaitStatement {
 
 	private static final String Calendar_Date_Select = "//p[contains(text(),'%s')]";
 
+//	 calendar ok button
 	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/button[2]/span[1]")
 	private WebElement Calendar_Ok_Btn;
 
+//   calendar cancel button
+	@FindBy(xpath = "(//button[@class=\"MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root css-qgn502-MuiButtonBase-root-MuiButton-root\"])[1]")
+	private WebElement Calendar_Cancel_Btn;
+
 	public void calendar(WebElement ele, String name, int duration, String enterYear, String enterMonth,
-			String EnterDate) {
+			String EnterDate, int okButtonClickPress0) {
 		staticWait(600);
 		try {
 			WebElement element = findElementVisibility(ele, duration);
@@ -147,9 +154,14 @@ public class WebBasePage extends WaitStatement {
 			String date = String.format(Calendar_Date_Select, EnterDate);
 			driver.findElement(By.xpath(date)).click();
 
+			if (okButtonClickPress0 == 0) {
 //			ok btn click
-			WebElement okBtnClick = findElementClickable(Calendar_Ok_Btn, 10);
-			okBtnClick.click();
+				WebElement okBtnClick = findElementClickable(Calendar_Ok_Btn, 10);
+				okBtnClick.click();
+			} else {
+				WebElement cancelBtn = findElementClickable(Calendar_Cancel_Btn, 10);
+				cancelBtn.click();
+			}
 
 			getTest().log(LogStatus.PASS, name + " entered with value" + " = " + " year- " + enterYear + " Month- "
 					+ enterMonth + " Date- " + EnterDate);
@@ -162,6 +174,7 @@ public class WebBasePage extends WaitStatement {
 //			screenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
+
 			Assert.fail("" + e);
 
 			e.printStackTrace();
@@ -171,9 +184,14 @@ public class WebBasePage extends WaitStatement {
 	public void click(WebElement ele, String name, int timeout) {
 		try {
 			WebElement element = findElementVisibility(ele, timeout);
-			staticWait(400);
+			staticWait(1000);
 			if (element != null) {
 				try {
+
+//					javascript action of 
+					JavascriptExecutor js = (JavascriptExecutor) driver;
+					js.executeScript("arguments[0].scrollIntoView();", element);
+
 					element.click();
 					getTest().log(LogStatus.PASS, name + " clicked");
 //				logger.info(name + " clicked ");
@@ -386,14 +404,14 @@ public class WebBasePage extends WaitStatement {
 	}
 
 	public String getCurrentUrl(String url, String name) {
-		staticWait(2000);
+		staticWait(7000);
 		String getUrl = driver.getCurrentUrl();
 		System.out.println(getUrl);
 		if (getUrl.startsWith(url)) {
-			getTest().log(LogStatus.PASS, name + "pass Url is ::" + getUrl);
+			getTest().log(LogStatus.PASS, name + " :-pass Url is ::" + getUrl);
 //			logger.info(name + "Url is ::  - " + getUrl);
 		} else {
-			getTest().log(LogStatus.FAIL, name + "Url is ::" + getUrl);
+			getTest().log(LogStatus.FAIL, name + " :-Fail Url is ::" + getUrl);
 //			logger.info(name + "Url is ::  - " + getUrl);
 
 //	 		takescreenshot function
@@ -406,11 +424,10 @@ public class WebBasePage extends WaitStatement {
 	}
 
 	public void pageRefresh(String name) {
-		staticWait(300);
 		driver.navigate().refresh();
-		staticWait(300);
 		String pageTitle = driver.getTitle();
 		System.out.println(pageTitle);
+		staticWait(1000);
 //		logger.info(pageTitle + "Page is" + name);
 	}
 
@@ -419,8 +436,10 @@ public class WebBasePage extends WaitStatement {
 		logger.info("Page Url is :: " + pageUrl + name);
 	}
 
+//	dynamic xpath create
+
 	public WebElement getTextByXpath(String xpathFormat, String xpathText, String name) {
-		staticWait(500);
+		staticWait(1000);
 		WebElement fullNameInput = null;
 		try {
 			String xpath = String.format(xpathFormat, xpathText);
@@ -437,8 +456,8 @@ public class WebBasePage extends WaitStatement {
 		return fullNameInput;
 	}
 
-	public String verifySuccessMessage(WebElement ele, String messageToVerify, int timeout) {
-		staticWait(300);
+	public String verifySuccessMessage(WebElement ele, String messageToVerify, String name, int timeout) {
+		staticWait(900);
 		String updateSuccessMsg = null;
 		WebElement element = findElementVisibility(ele, timeout);
 
@@ -447,16 +466,25 @@ public class WebBasePage extends WaitStatement {
 //			 element = findElementsVisibility((by));
 			updateSuccessMsg = getText(element, "message", 200);
 
-//			Actions class move to elements
-			
-			Actions action = new Actions(driver);
-			action.moveToElement(element).build().perform();
-			
+//			Actions class move to elements--->not efficiency using javascript
+
+//			Actions action = new Actions(driver);
+//			action.moveToElement(element).build().perform();
+
+			staticWait(500);
+
+//			javascript action of 
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView();", element);
+
+			staticWait(800);
 //			logger.debug("Validation message is :: " + updateSuccessMsg);
 			if (updateSuccessMsg.equalsIgnoreCase(messageToVerify)) {
-				getTest().log(LogStatus.PASS, updateSuccessMsg + " is successfully displayed");
+				getTest().log(LogStatus.PASS, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + "  is successfully displayed");
 			} else {
-				getTest().log(LogStatus.FAIL, messageToVerify + "is not successfully displayed");
+				getTest().log(LogStatus.FAIL, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + " is not successfully displayed");
 				takeScreenshot(new Object() {
 				}.getClass().getEnclosingMethod().getName());
 //				logger.debug("Success message is not displayed");
@@ -475,7 +503,6 @@ public class WebBasePage extends WaitStatement {
 			Assert.fail("successMessage");
 			e.printStackTrace();
 //				takescreenshot function
-
 
 		}
 		return updateSuccessMsg;
@@ -528,8 +555,10 @@ public class WebBasePage extends WaitStatement {
 		}
 	}
 
+//	random name genarator
+
 	public String nameGenerator() {
-		staticWait(300);
+		staticWait(1000);
 		String givenName = "";
 		// Date time formatter
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMddHHmmss");
@@ -583,39 +612,142 @@ public class WebBasePage extends WaitStatement {
 
 	}
 
-//	public void List(WebElement ele, String name, int duration) {
-//		List<WebElement> elementList = null;
+//	random number generator
+
+	public String numberGenerator(int limit) {
+		staticWait(1000);
+
+		Random random = new Random();
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < limit; i++) {
+			int randomNumber;
+			if (i == 0) {
+				// Generate a random number between 1 and 9 for the first digit
+				randomNumber = 1 + random.nextInt(9);
+			} else {
+				// Generate a random number between 0 and 9 for the remaining digits
+				randomNumber = random.nextInt(10);
+			}
+			builder.append(randomNumber);
+		}
+
+		return builder.toString();
+	}
+
+	public void listSearch(WebElement ele, String name, String compareText, int duration, String xpathExpression) {
+		try {
+
+			WebElement element = findElementVisibility(ele, duration);
+			staticWait(2000);
+
+			List<WebElement> elementList = element.findElements(By.xpath(xpathExpression));
+
+			staticWait(2000);
+			for (WebElement elementget : elementList) {
+				// assuming the value you want to compare is the element's text
+				staticWait(500);
+				String elementValue = elementget.getText();
+				System.out.println(elementValue);
+
+				if (elementValue.equalsIgnoreCase(compareText)) {
+					getTest().log(LogStatus.PASS,
+							name + " :-- Equal value of compare- " + compareText + " :-- Search value " + elementValue);
+				} else {
+					getTest().log(LogStatus.PASS, name + " :-- Not Equal value of compare- " + compareText
+							+ " :-- Search value " + elementValue);
+				}
+			}
+//			logger.info(name + " entered with value - " + value);
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, pageName + name + " not entered with value - " + ", error exist - " + e);
+//			logger.info(name + " not entered with value - " + value + ", error exist - " + e);
+
+//			screenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
+			Assert.fail("" + e);
+
+			e.printStackTrace();
+		}
+	}
+
+	@FindBy(xpath = "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input MuiTablePagination-selectRoot css-1mwbjxl-MuiInputBase-root']/child::div")
+	private WebElement page_Size;
+
+	@FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body2 MuiTablePagination-displayedRows css-11bknwd-MuiTypography-root']/child::p")
+	private WebElement page_Number_get_text;
+
+	public void PageNavigate(WebElement ArrowBtnClick,WebElement Component, int Timeout) {
+
+		WebElement element = findElementVisibility(ArrowBtnClick, Timeout);
+		List<WebElement> ElementsCount = driver
+				.findElements(By.xpath("//tr[@class='MuiTableRow-root   css-yv5l9w-MuiTableRow-root']"));
+
+		// Variable of first split contains 1-25 of 278
+
+		int currentPage = 1;
+
+//		count number of employees 
+		while (true) {
+
+			// Clicking on the arrow button to go to the next page
+			if (element.isDisplayed() && element.isEnabled()) {
+
+//				page number get text 1-25 of 278
+				String pagenumber = page_Number_get_text.getText();
+
+//				page size eg - page per row 25 , 50 ,100 
+				String pagesize = page_Size.getText();
+
+//				split 1-25 of 278 text in start page and end page index for start page =2 and index for end page =3
+				String[] parts = pagenumber.split("[-\\s]+");
+
+//				variable second split
+				int endRange = 0;
+				int StartRange = 0;
+				int listsize;
+				if (parts.length >= 3) {
+					String Startrange = parts[0]; // "1"
+					String endrange = parts[1];
+
+//					convert string to int
+					StartRange = Integer.parseInt(Startrange);
+					endRange = Integer.parseInt(endrange);
+
+				} else {
+					System.out.println("Invalid format");
+				}
+//				variable of element in employee directory
+				int list = 0;
+				for (listsize = StartRange; listsize <= endRange; listsize++) {
+
+					list++;
+					findElementVisibility(element, Timeout);
+				}
+
+				click(element, "Page Navigate Arrow click", 40);
+				staticWait(500);
+				getTest().log(LogStatus.PASS, "currentpage" + currentPage);
+
+			} else {
+				// Stop if the next button is not visible
+				System.out.println("Breaked as no more next page----");
+				break;
+			}
+			currentPage++;
+		}
+	}
+
+//	public void xya() {
+//		BasicConfigurator.configure();
 //		try {
-//			WebElement element = findElementVisibility(ele, duration);
-//			staticWait(600);
-//			
-//			List<WebElement> elementList =element.ge
-//			
-//
-//			for(WebElement elementget  : elementList) {
-//			    // assuming the value you want to compare is the element's text
-//			    String elementValue = elementget.getText(); 
-//			    System.out.println(elementValue);
-//
-//				if(elementValue.equalsIgnoreCase(prop.getProperty("Full_Name"))) {
-//					getTest().log(LogStatus.PASS, name + " entered with value - " + name + elementValue);
-//
-//				}
-//			}
-//
-////			getTest().log(LogStatus.PASS, name + " entered with value - " );
-////			logger.info(name + " entered with value - " + value);
-//		} catch (Exception e) {
-////			getTest().log(LogStatus.FAIL,
-////					pageName + name + " not entered with value - "  + ", error exist - " + e);
-////			logger.info(name + " not entered with value - " + value + ", error exist - " + e);
-//
-////			screenshot function
-//			takeScreenshot(new Object() {
-//			}.getClass().getEnclosingMethod().getName());
-//			Assert.fail("" + e);
-//
-//			e.printStackTrace();
+//			String log4jConfigFile = System.getProperty("user.dir") + File.separator + "log4j.properties";
+//			PropertyConfigurator.configure(log4jConfigFile);
+//		} catch (Exception e1) {
+//			LOGGER.error("Exception while loading properties", e1);
+//			e1.printStackTrace();
 //		}
 //	}
 
