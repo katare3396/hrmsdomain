@@ -9,9 +9,16 @@ public class LoginTestCase extends BrowserLaunch {
 
 	private LoginAction loginAction;
 
-	@Test
+	@Test(priority = 0)
+	public void VisibityLoginPage() {
+		loginAction = new LoginAction(driver);
+		loginAction.loginPageVisibity();
+	}
+
+	@Test(priority = 1, dependsOnMethods = "VisibityLoginPage")
 	public void adminSideLogin() {
 		loginAction = new LoginAction(driver);
 		loginAction.enterLoginCredential();
 	}
+
 }

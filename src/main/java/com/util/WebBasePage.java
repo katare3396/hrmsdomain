@@ -3,17 +3,26 @@ package com.util;
 import static com.reporting.ComplexReportFactory.getTest;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
+import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.Logger;
+import org.apache.poi.ss.usermodel.*;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+//get excel 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -31,11 +40,8 @@ import com.relevantcodes.extentreports.LogStatus;
 public class WebBasePage extends WaitStatement {
 
 	public WebDriver driver;
-	public static Logger logger;
+//	public static Logger logger;
 	private String pageName;
-
-	private final static String FILE_NAME = System.getProperty("user.dir") + "/src/main/resources/testdata.properties";
-	private static Properties prop = new PropertiesLoader(FILE_NAME).load();
 
 	public WebBasePage(WebDriver driver) {
 		super(driver);
@@ -49,8 +55,10 @@ public class WebBasePage extends WaitStatement {
 //		logger.info("Url opened - " + url);
 	}
 
+//	simple enter
 	public void enter(WebElement ele, String value, String name, int duration) {
 		try {
+			staticWait(1000);
 			WebElement element = findElementVisibility(ele, duration);
 			staticWait(800);
 //			JavascriptExecutor js=(JavascriptExecutor) driver;       
@@ -59,11 +67,10 @@ public class WebBasePage extends WaitStatement {
 //			js.executeScript("document.getElement"+el+".value=enterTestData");  
 //			js.executeScript("argument.[0].value="+enterTestData+","+el+"");  
 //			jse.executeScript("arguments[0].scrollIntoView();", element);
-//			element.clear();
+			element.clear();
 			element.click();
 			element.sendKeys(value);
 			getTest().log(LogStatus.PASS, name + " entered with value - " + value);
-
 //			logger.info(name + " entered with value - " + value);
 		} catch (Exception e) {
 			getTest().log(LogStatus.FAIL,
@@ -80,10 +87,13 @@ public class WebBasePage extends WaitStatement {
 		}
 	}
 
+//	enter force value
 	public void enterForceValueDd(WebElement ele, String value, String name, int duration, int ClickArrowBtnTime) {
 		try {
 			WebElement element = findElementVisibility(ele, duration);
 			staticWait(600);
+
+			element.clear();
 
 			Actions action = new Actions(driver);
 			action.moveToElement(element).click();
@@ -136,24 +146,30 @@ public class WebBasePage extends WaitStatement {
 		try {
 			WebElement element = findElementVisibility(ele, duration);
 			staticWait(700);
+//			calendar click
 			element.click();
 
+			staticWait(300);
 //			year click
 			WebElement yearclick = findElementClickable(Calendar_Year_Click, 40);
 			yearclick.click();
 
+			staticWait(300);
 //			year select
 			String year = String.format(Calendar_year_Select, enterYear);
 			driver.findElement(By.xpath(year)).click();
 
+			staticWait(300);
 //          month select            
 			String month = String.format(Calendar_Month_select, enterMonth);
 			driver.findElement(By.xpath(month)).click();
 
+			staticWait(300);
 //			date select 
 			String date = String.format(Calendar_Date_Select, EnterDate);
 			driver.findElement(By.xpath(date)).click();
 
+			staticWait(300);
 			if (okButtonClickPress0 == 0) {
 //			ok btn click
 				WebElement okBtnClick = findElementClickable(Calendar_Ok_Btn, 10);
@@ -176,11 +192,10 @@ public class WebBasePage extends WaitStatement {
 			}.getClass().getEnclosingMethod().getName());
 
 			Assert.fail("" + e);
-
-			e.printStackTrace();
 		}
 	}
 
+//	click focus move according to click
 	public void click(WebElement ele, String name, int timeout) {
 		try {
 			WebElement element = findElementVisibility(ele, timeout);
@@ -188,16 +203,12 @@ public class WebBasePage extends WaitStatement {
 			if (element != null) {
 				try {
 
-//					javascript action of 
-					JavascriptExecutor js = (JavascriptExecutor) driver;
-					js.executeScript("arguments[0].scrollIntoView();", element);
-
 					element.click();
 					getTest().log(LogStatus.PASS, name + " clicked");
-//				logger.info(name + " clicked ");
+//					logger.info(name + " clicked ");
 				} catch (Exception e) {
-					getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
-//				logger.info(name + " not clicked");
+					getTest().log(LogStatus.FAIL, pageName + name + " not clicked " + e);
+//					logger.info(name + " not clicked");
 
 //				screenshot screen
 					takeScreenshot(new Object() {
@@ -207,7 +218,7 @@ public class WebBasePage extends WaitStatement {
 				}
 			} else {
 				getTest().log(LogStatus.FAIL, pageName + name + " not clicked ");
-//			logger.info(name + " not clicked");
+//				logger.info(name + " not clicked");
 
 //			takescreenshot function
 				takeScreenshot(new Object() {
@@ -215,7 +226,9 @@ public class WebBasePage extends WaitStatement {
 
 				Assert.fail(name + " -  element not clikabke");
 			}
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			getTest().log(LogStatus.FAIL, "Error Occurred. " + e);
 //			logger.info("Error Occurred. " + e);
 
@@ -227,6 +240,158 @@ public class WebBasePage extends WaitStatement {
 
 			Assert.fail("" + e);
 		}
+	}
+
+//	get current url
+	public String getCurrentUrl(String url, String name) {
+		staticWait(9000);
+		String getUrl = driver.getCurrentUrl();
+		if (getUrl.startsWith(url)) {
+			getTest().log(LogStatus.PASS, name + " :-pass Url is ::" + getUrl);
+//			logger.info(name + "Url is ::  - " + getUrl);
+		} else {
+			getTest().log(LogStatus.FAIL, name + " :-Fail Url is ::" + getUrl);
+//			logger.info(name + "Url is ::  - " + getUrl);
+
+//	 		takescreenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
+			Assert.fail(name + "Url not matched");
+		}
+		return url;
+	}
+
+	public void pageRefresh(String name) {
+		staticWait(500);
+		driver.navigate().refresh();
+		String pageTitle = driver.getTitle();
+		staticWait(3000);
+//		logger.info(pageTitle + "Page is" + name);
+	}
+
+	public void pageNavigate(String pageUrl, String name) {
+		driver.navigate().to(pageUrl);
+//		logger.info("Page Url is :: " + pageUrl + name);
+	}
+
+//	dynamic xpath create
+	public WebElement getTextByXpath(String xpathFormat, String xpathText, String name) {
+		staticWait(1000);
+		WebElement fullNameInput = null;
+		try {
+			String xpath = String.format(xpathFormat, xpathText);
+			fullNameInput = driver.findElement(By.xpath(xpath));
+			getTest().log(LogStatus.PASS, xpathText + " is successfully displayed");
+		} catch (Exception e) {
+			e.printStackTrace();
+			getTest().log(LogStatus.FAIL, xpathText + "is not successfully displayed");
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+//		logger.debug("Success message is not displayed");
+			Assert.fail(name);
+		}
+		return fullNameInput;
+	}
+
+//  get text from xpath verify give message	
+	public String verifySuccessMessage(WebElement ele, String messageToVerify, String name, int timeout) {
+		staticWait(100);
+		String updateSuccessMsg = null;
+		try {
+			WebElement element = findElementVisibility(ele, timeout);
+//			 element = findElementsVisibility((by));
+			updateSuccessMsg = getText(element, "message", 1000);
+
+			staticWait(500);
+
+			Actions action = new Actions(driver);
+			action.moveToElement(element);
+
+//			javascript action of 
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView();", element);
+
+			staticWait(800);
+//			logger.debug("Validation message is :: " + updateSuccessMsg);
+			if (updateSuccessMsg.equalsIgnoreCase(messageToVerify)) {
+				getTest().log(LogStatus.PASS, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + "  is successfully displayed");
+			} else {
+				getTest().log(LogStatus.FAIL, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + " is not successfully displayed");
+
+//				takescreenshot function
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
+//				logger.debug("Success message is not displayed");
+				Assert.fail("successMessage");
+
+//				takescreenshot function
+
+				updateSuccessMsg = "";
+			}
+		} catch (Exception e) {
+			getTest().log(LogStatus.ERROR, "Success message is not successfully displayed");
+
+//			takescreenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+//				logger.debug("Success message is not displayed");
+
+			Assert.fail("successMessage");
+			e.printStackTrace();
+//				takescreenshot function
+
+		}
+		return updateSuccessMsg;
+
+	}
+
+//	alert message handle
+	public String AlertMessage(WebElement ele, String messageToVerify, String name, int timeout) {
+		staticWait(100);
+		String updateSuccessMsg = null;
+		try {
+			WebElement element = findElementVisibility(ele, timeout);
+//			 element = findElementsVisibility((by));
+			updateSuccessMsg = getText(element, "message", 1000);
+
+			staticWait(500);
+
+//			logger.debug("Validation message is :: " + updateSuccessMsg);
+			if (updateSuccessMsg.equalsIgnoreCase(messageToVerify)) {
+				getTest().log(LogStatus.PASS, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + "  is successfully displayed");
+			} else {
+				getTest().log(LogStatus.FAIL, name + " :--updateSucessmessage-->> " + updateSuccessMsg
+						+ " :-- messageToVerify -->>  " + messageToVerify + " is not successfully displayed");
+
+//				takescreenshot function
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
+//				logger.debug("Success message is not displayed");
+				Assert.fail("successMessage");
+
+//				takescreenshot function
+
+				updateSuccessMsg = "";
+			}
+		} catch (Exception e) {
+			getTest().log(LogStatus.ERROR, "Success message is not successfully displayed");
+
+//			takescreenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+//				logger.debug("Success message is not displayed");
+
+			Assert.fail("successMessage");
+			e.printStackTrace();
+//				takescreenshot function
+
+		}
+		return updateSuccessMsg;
+
 	}
 
 	public String getText(final WebElement ele, String name, int timeout) {
@@ -258,7 +423,7 @@ public class WebBasePage extends WaitStatement {
 			return getCssValue;
 		} else {
 			getTest().log(LogStatus.FAIL, "Error Occurred. ");
-			logger.info("\"Error while getting Css value");
+			// ogger.info("\"Error while getting Css value");
 
 //			takescreenshot function
 			takeScreenshot(new Object() {
@@ -283,7 +448,7 @@ public class WebBasePage extends WaitStatement {
 			WebElement ele = findElementVisibility(element, time);
 			String getText;
 			getText = ele.getAttribute(tag);
-			logger.info(" get attribute value is  - " + getText);
+			// logger.info(" get attribute value is - " + getText);
 			return getText;
 		} catch (Exception e) {
 			getTest().log(LogStatus.FAIL, "Error Occurred. " + e);
@@ -328,16 +493,22 @@ public class WebBasePage extends WaitStatement {
 
 	public void takeScreenshot(String name) {
 
-		String imagePath = System.getProperty("user.dir") + "\\reports\\" + name + "_"
+//		String imagePath = System.getProperty("user.dir") + "\\reports\\" + name + "_"
+//				+ new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		String imagePath = System.getProperty("user.dir") + "/reports/" + name + "_"
 				+ new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(scrFile, new File(imagePath + ".png"));
 			System.out.println(imagePath + ".png");
 		} catch (Exception e) { //
+			getTest().log(LogStatus.FAIL, getTest().addScreenCapture(imagePath + ".png"));
+
 			Assert.fail("Error while taking screenshot - " + e);
+
 		}
-		getTest().log(LogStatus.INFO, getTest().addScreenCapture(imagePath + ".png"));
+		getTest().log(LogStatus.FAIL, getTest().addScreenCapture(imagePath + ".png"));
 
 	}
 
@@ -348,10 +519,10 @@ public class WebBasePage extends WaitStatement {
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].click();", element);
 			getTest().log(LogStatus.PASS, name + " click by JS");
-//			logger.info(name + " clicked ");
+			// logger.info(name + " clicked ");
 		} catch (Exception e) {
 			getTest().log(LogStatus.FAIL, "Error Occurred. " + e);
-//			logger.info("Error Occurred. " + e);
+			// logger.info("Error Occurred. " + e);
 
 //			takescreenshot function
 			takeScreenshot(new Object() {
@@ -362,12 +533,26 @@ public class WebBasePage extends WaitStatement {
 	public void hover(final WebElement element, String name, int time) {
 		staticWait(500);
 		WebElement ele = findElementVisibility(element, time);
-		if (ele != null) {
-			Actions action = new Actions(driver);
-			action.moveToElement(ele).perform();
-		} else {
-			getTest().log(LogStatus.FAIL, "Hover not performed");
+		try {
+			if (ele != null) {
+				Actions action = new Actions(driver);
+				action.moveToElement(ele).perform();
+				getTest().log(LogStatus.PASS, "Hover Is performed");
+
+			} else {
+				getTest().log(LogStatus.FAIL, "Hover not performed");
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
+
+			}
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, "Hover not performed" + e);
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+			Assert.fail("" + e);
+
 		}
+
 	}
 
 	public boolean toCheckElementIsDisplayed(final WebElement element, int time, String name) {
@@ -379,21 +564,30 @@ public class WebBasePage extends WaitStatement {
 			isElementPresent = ele.isDisplayed();
 			if (isElementPresent) {
 
-				getTest().log(LogStatus.PASS, " is" + name + "Element Present?  - " + isElementPresent);
-				logger.info(" is" + name + "Element Present ?  - " + isElementPresent);
+				getTest().log(LogStatus.PASS, " is  " + name + "  Element Present?  - " + isElementPresent);
+				// logger.info(" is" + name + "Element Present ? - " + isElementPresent);
 			}
 		} catch (Exception e) {
-			getTest().log(LogStatus.FAIL, " is" + name + "  Element not Present ?  - " + isElementPresent);
-			logger.info(" is" + name + "Element Present ? - " + isElementPresent);
+			getTest().log(LogStatus.FAIL, " is " + name + "  Element not Present ?  - " + isElementPresent);
+			// logger.info(" is" + name + "Element Present ? - " + isElementPresent);
 //			takeScreenshot("Element is not displayed");
 
 //			screenshot function
 			takeScreenshot(new Object() {
 			}.getClass().getEnclosingMethod().getName());
 
-//			Assert.fail("" + isElementPresent);
+			Assert.fail("" + isElementPresent);
 		}
 		return isElementPresent;
+	}
+
+	public void xyz(WebElement ok) {
+		WebElement truecheck = findElementVisibility(ok, 0);
+		if (truecheck.isDisplayed()) {
+			truecheck.click();
+		} else {
+			System.out.println("yurjr");
+		}
 	}
 
 	public String gettextByJSexecuter(By by, String name, Duration time) {
@@ -401,112 +595,6 @@ public class WebBasePage extends WaitStatement {
 		WebElement element = driver.findElement(by);
 		jse.executeScript("return arguments[0].text", element);
 		return element.getText();
-	}
-
-	public String getCurrentUrl(String url, String name) {
-		staticWait(7000);
-		String getUrl = driver.getCurrentUrl();
-		System.out.println(getUrl);
-		if (getUrl.startsWith(url)) {
-			getTest().log(LogStatus.PASS, name + " :-pass Url is ::" + getUrl);
-//			logger.info(name + "Url is ::  - " + getUrl);
-		} else {
-			getTest().log(LogStatus.FAIL, name + " :-Fail Url is ::" + getUrl);
-//			logger.info(name + "Url is ::  - " + getUrl);
-
-//	 		takescreenshot function
-			takeScreenshot(new Object() {
-			}.getClass().getEnclosingMethod().getName());
-
-			Assert.fail(name + "Url not matched");
-		}
-		return url;
-	}
-
-	public void pageRefresh(String name) {
-		driver.navigate().refresh();
-		String pageTitle = driver.getTitle();
-		System.out.println(pageTitle);
-		staticWait(1000);
-//		logger.info(pageTitle + "Page is" + name);
-	}
-
-	public void pageNavigate(String pageUrl, String name) {
-		driver.navigate().to(pageUrl);
-		logger.info("Page Url is :: " + pageUrl + name);
-	}
-
-//	dynamic xpath create
-
-	public WebElement getTextByXpath(String xpathFormat, String xpathText, String name) {
-		staticWait(1000);
-		WebElement fullNameInput = null;
-		try {
-			String xpath = String.format(xpathFormat, xpathText);
-			fullNameInput = driver.findElement(By.xpath(xpath));
-			getTest().log(LogStatus.PASS, xpathText + " is successfully displayed");
-		} catch (Exception e) {
-			e.printStackTrace();
-			getTest().log(LogStatus.FAIL, xpathText + "is not successfully displayed");
-			takeScreenshot(new Object() {
-			}.getClass().getEnclosingMethod().getName());
-//		logger.debug("Success message is not displayed");
-			Assert.fail(name);
-		}
-		return fullNameInput;
-	}
-
-	public String verifySuccessMessage(WebElement ele, String messageToVerify, String name, int timeout) {
-		staticWait(900);
-		String updateSuccessMsg = null;
-		WebElement element = findElementVisibility(ele, timeout);
-
-		try {
-			findElementVisibility(element, timeout);
-//			 element = findElementsVisibility((by));
-			updateSuccessMsg = getText(element, "message", 200);
-
-//			Actions class move to elements--->not efficiency using javascript
-
-//			Actions action = new Actions(driver);
-//			action.moveToElement(element).build().perform();
-
-			staticWait(500);
-
-//			javascript action of 
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].scrollIntoView();", element);
-
-			staticWait(800);
-//			logger.debug("Validation message is :: " + updateSuccessMsg);
-			if (updateSuccessMsg.equalsIgnoreCase(messageToVerify)) {
-				getTest().log(LogStatus.PASS, name + " :--updateSucessmessage-->> " + updateSuccessMsg
-						+ " :-- messageToVerify -->>  " + messageToVerify + "  is successfully displayed");
-			} else {
-				getTest().log(LogStatus.FAIL, name + " :--updateSucessmessage-->> " + updateSuccessMsg
-						+ " :-- messageToVerify -->>  " + messageToVerify + " is not successfully displayed");
-				takeScreenshot(new Object() {
-				}.getClass().getEnclosingMethod().getName());
-//				logger.debug("Success message is not displayed");
-				Assert.fail("successMessage");
-
-//				takescreenshot function
-
-				updateSuccessMsg = "";
-			}
-		} catch (Exception e) {
-			getTest().log(LogStatus.FAIL, "Success message is not successfully displayed");
-			takeScreenshot(new Object() {
-			}.getClass().getEnclosingMethod().getName());
-//				logger.debug("Success message is not displayed");
-
-			Assert.fail("successMessage");
-			e.printStackTrace();
-//				takescreenshot function
-
-		}
-		return updateSuccessMsg;
-
 	}
 
 	public void verifyMultiSelectValues(By by, String messageToVerify, Duration time) {
@@ -546,10 +634,10 @@ public class WebBasePage extends WaitStatement {
 	public void verifyCharactersLength(int actualCharacters, int charactersToCheck, String name) {
 		if (charactersToCheck == actualCharacters) {
 			getTest().log(LogStatus.PASS, "Actual characters length is :: " + actualCharacters);
-			logger.info(name + "::" + actualCharacters);
+//			logger.info(name + "::" + actualCharacters);
 		} else {
 			getTest().log(LogStatus.FAIL, "characters to check is :: " + charactersToCheck);
-			logger.info(name + "::" + charactersToCheck);
+//			logger.info(name + "::" + charactersToCheck);
 			takeScreenshot("VerifyCharactersValidation");
 			Assert.fail("VerifyCharactersValidation");
 		}
@@ -558,7 +646,7 @@ public class WebBasePage extends WaitStatement {
 //	random name genarator
 
 	public String nameGenerator() {
-		staticWait(1000);
+		staticWait(100);
 		String givenName = "";
 		// Date time formatter
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMddHHmmss");
@@ -615,7 +703,7 @@ public class WebBasePage extends WaitStatement {
 //	random number generator
 
 	public String numberGenerator(int limit) {
-		staticWait(1000);
+		staticWait(100);
 
 		Random random = new Random();
 		StringBuilder builder = new StringBuilder();
@@ -635,9 +723,45 @@ public class WebBasePage extends WaitStatement {
 		return builder.toString();
 	}
 
+//	list search 
+
 	public void listSearch(WebElement ele, String name, String compareText, int duration, String xpathExpression) {
 		try {
+			WebElement element = findElementVisibility(ele, duration);
+			staticWait(2000);
 
+			List<WebElement> elementList = element.findElements(By.xpath(xpathExpression));
+
+			staticWait(2000);
+			for (WebElement elementget : elementList) {
+				// assuming the value you want to compare is the element's text
+				staticWait(500);
+				String elementValue = elementget.getText();
+				if (elementValue.equalsIgnoreCase(compareText)) {
+					getTest().log(LogStatus.PASS,
+							name + " :-- Equal value of compare- " + compareText + " :-- Search value " + elementValue);
+				} else {
+					getTest().log(LogStatus.PASS, name + " :-- Not Equal value of compare- " + compareText
+							+ " :-- Search value " + elementValue);
+				}
+			}
+//			logger.info(name + " entered with value - " + value);
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, pageName + name + " not entered with value - " + ", error exist - " + e);
+//			logger.error(name + " not entered with value - " + value + ", error exist - " + e);
+
+//			screenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
+			Assert.fail("" + e);
+		}
+	}
+
+//  UNIQUE RECORD 
+	public void uniqueRecord(WebElement ele, String name, String compareText, int duration, String xpathExpression) {
+		try {
+			int count = 0;
 			WebElement element = findElementVisibility(ele, duration);
 			staticWait(2000);
 
@@ -651,11 +775,20 @@ public class WebBasePage extends WaitStatement {
 				System.out.println(elementValue);
 
 				if (elementValue.equalsIgnoreCase(compareText)) {
-					getTest().log(LogStatus.PASS,
-							name + " :-- Equal value of compare- " + compareText + " :-- Search value " + elementValue);
+					if (count == 0) {
+						getTest().log(LogStatus.PASS, name + " :-- Equal value of compare- " + compareText
+								+ " :-- Search value " + elementValue);
+					} else {
+						getTest().log(LogStatus.FAIL,
+								name + " :-- Mutiple create - " + compareText + " :-- Duplicate record" + elementValue);
+//						screenshot function
+						takeScreenshot(new Object() {
+						}.getClass().getEnclosingMethod().getName());
+					}
+					count++;
 				} else {
-					getTest().log(LogStatus.PASS, name + " :-- Not Equal value of compare- " + compareText
-							+ " :-- Search value " + elementValue);
+//					getTest().log(LogStatus.PASS, name + " :-- Not Equal value of compare- " + compareText
+//							+ " :-- Search value " + elementValue);
 				}
 			}
 //			logger.info(name + " entered with value - " + value);
@@ -668,87 +801,222 @@ public class WebBasePage extends WaitStatement {
 			}.getClass().getEnclosingMethod().getName());
 
 			Assert.fail("" + e);
+		}
+
+	}
+
+	public void ArrowBtnPageNavigate(WebElement ArrowBtnClick, int startRange, int endRange, int pageCount,
+			String Component, int Timeout) {
+
+		staticWait(1000);
+		WebElement element = findElementVisibility(ArrowBtnClick, Timeout);
+
+		// Variable of first split contains 1-25 of 278
+
+		int currentPage = 1;
+		try {
+//		count number of employees 
+			while (currentPage <= pageCount) {
+
+				// Clicking on the arrow button to go to the next page
+				if (element.isDisplayed() && element.isEnabled()) {
+
+					int listsize;
+
+//				variable of element in employee directory
+					int list = 1;
+					for (listsize = startRange; listsize <= endRange; listsize++) {
+
+						WebElement componentxpath = getTextByXpath(Component, String.valueOf(list).toString(),
+								Component);
+
+//					javascript action of 
+						JavascriptExecutor js = (JavascriptExecutor) driver;
+						js.executeScript("arguments[0].scrollIntoView();", componentxpath);
+						findElementVisibility(componentxpath, Timeout);
+						list++;
+					}
+
+					click(element, "Page Navigate Arrow click", 40);
+					staticWait(500);
+					getTest().log(LogStatus.PASS, "currentpage" + currentPage);
+
+				} else {
+					// Stop if the next button is not visible
+					System.out.println("Breaked as no more next page----");
+					break;
+				}
+				currentPage++;
+			}
+		} catch (Exception e) {
+
+//	screenshot function
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
+			Assert.fail("" + e);
 
 			e.printStackTrace();
 		}
 	}
 
-	@FindBy(xpath = "//div[@class='MuiInputBase-root MuiInputBase-colorPrimary MuiTablePagination-input MuiTablePagination-selectRoot css-1mwbjxl-MuiInputBase-root']/child::div")
-	private WebElement page_Size;
+	public void checkbox(String checkboxxpath, int isChecked) {
+		List<WebElement> checkboxes = driver.findElements(By.xpath(checkboxxpath));
+try {
+		for (WebElement checkbox : checkboxes) {
 
-	@FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body2 MuiTablePagination-displayedRows css-11bknwd-MuiTypography-root']/child::p")
-	private WebElement page_Number_get_text;
-
-	public void PageNavigate(WebElement ArrowBtnClick,WebElement Component, int Timeout) {
-
-		WebElement element = findElementVisibility(ArrowBtnClick, Timeout);
-		List<WebElement> ElementsCount = driver
-				.findElements(By.xpath("//tr[@class='MuiTableRow-root   css-yv5l9w-MuiTableRow-root']"));
-
-		// Variable of first split contains 1-25 of 278
-
-		int currentPage = 1;
-
-//		count number of employees 
-		while (true) {
-
-			// Clicking on the arrow button to go to the next page
-			if (element.isDisplayed() && element.isEnabled()) {
-
-//				page number get text 1-25 of 278
-				String pagenumber = page_Number_get_text.getText();
-
-//				page size eg - page per row 25 , 50 ,100 
-				String pagesize = page_Size.getText();
-
-//				split 1-25 of 278 text in start page and end page index for start page =2 and index for end page =3
-				String[] parts = pagenumber.split("[-\\s]+");
-
-//				variable second split
-				int endRange = 0;
-				int StartRange = 0;
-				int listsize;
-				if (parts.length >= 3) {
-					String Startrange = parts[0]; // "1"
-					String endrange = parts[1];
-
-//					convert string to int
-					StartRange = Integer.parseInt(Startrange);
-					endRange = Integer.parseInt(endrange);
+			switch (isChecked) {
+//			not check actions --> than check actions
+			case 0: {
+				if (!checkbox.isSelected()) {
+					checkbox.click();
+					getTest().log(LogStatus.PASS, "currentpage  :--" + checkboxxpath);
 
 				} else {
-					System.out.println("Invalid format");
+					System.out.println("checkbox is already select");
+					takeScreenshot(new Object() {
+					}.getClass().getEnclosingMethod().getName());
 				}
-//				variable of element in employee directory
-				int list = 0;
-				for (listsize = StartRange; listsize <= endRange; listsize++) {
-
-					list++;
-					findElementVisibility(element, Timeout);
-				}
-
-				click(element, "Page Navigate Arrow click", 40);
-				staticWait(500);
-				getTest().log(LogStatus.PASS, "currentpage" + currentPage);
-
-			} else {
-				// Stop if the next button is not visible
-				System.out.println("Breaked as no more next page----");
 				break;
 			}
-			currentPage++;
+//			check actions -- > uncheck action checkbox
+			case 1: { 	
+				if (checkbox.isSelected()) {
+					checkbox.click();
+					getTest().log(LogStatus.PASS, "currentpage :---" + checkboxxpath);
+
+				} else {
+					System.out.println("checkbox is already select");
+					takeScreenshot(new Object() {
+					}.getClass().getEnclosingMethod().getName());
+				}
+				break;
+			}
+			}
+		}}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+// excel files upload
+
+	public void uploadExcelFiles(String xpath, String sourcefile) {
+		try {
+			WebElement upload_file = driver.findElement(By.xpath(xpath));
+			upload_file.sendKeys(System.getProperty("user.dir") + sourcefile);
+			getTest().log(LogStatus.PASS, sourcefile + " file upload sucessfully ::");
+
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, sourcefile + " file upload FAIL ::" + e);
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+
+			Assert.fail("" + e);
 		}
 	}
 
-//	public void xya() {
-//		BasicConfigurator.configure();
-//		try {
-//			String log4jConfigFile = System.getProperty("user.dir") + File.separator + "log4j.properties";
-//			PropertyConfigurator.configure(log4jConfigFile);
-//		} catch (Exception e1) {
-//			LOGGER.error("Exception while loading properties", e1);
-//			e1.printStackTrace();
-//		}
-//	}
+	public XSSFSheet sheet;
+	public XSSFRow row;
+	public XSSFCell cell;
+
+	public void writeDatafileClass(String excelpath, int sheet_index, int sheet_row, int cell_index,
+			String setcell_value) {
+		try {
+			// Input excel file
+			String path = System.getProperty("user.dir") + excelpath;
+			File file = new File(path);
+
+			if (!file.exists()) {
+				throw new FileNotFoundException("Excel file not found: " + path);
+			}
+
+			FileInputStream fis = new FileInputStream(file);
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+
+			int numberOfSheets = wb.getNumberOfSheets();
+			if (sheet_index < 0 || sheet_index >= numberOfSheets) {
+				throw new IllegalArgumentException("Invalid sheet index: " + sheet_index);
+			}
+
+			sheet = wb.getSheetAt(sheet_index);
+
+			row = sheet.getRow(sheet_row);
+			if (row == null) {
+				row = sheet.createRow(sheet_row);
+			}
+
+			cell = row.getCell(cell_index);
+			if (cell == null) {
+				cell = row.createCell(cell_index);
+			}
+
+			cell.setCellValue(setcell_value);
+
+			// Output excel file
+			FileOutputStream fos = new FileOutputStream(file);
+			wb.write(fos);
+
+			fos.close();
+			fis.close();
+			wb.close();
+			getTest().log(LogStatus.PASS, " --: Data while write in excel file ::");
+
+		} catch (Exception e) {
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+			getTest().log(LogStatus.FAIL, e + " --: Error while write in excel file ::");
+
+		}
+
+	}
+
+	public void mutipleClick(WebElement ele, String testcasename, int timeout) {
+
+		WebElement click = findElementVisibility(ele, timeout);
+
+		int count = 0;
+		try {
+			while (click.isDisplayed()) {
+				try {
+					Actions action = new Actions(driver);
+					action.moveToElement(click).build().perform();
+					if (count == 0) {
+						click.click();
+						getTest().log(LogStatus.PASS, testcasename + " --: Btn is click only ::");
+					} else if (count <= 5) {
+						click.click();
+						getTest().log(LogStatus.FAIL, testcasename + " --: Mutiple click on Btn ::");
+//			take screenshot
+						takeScreenshot(new Object() {
+						}.getClass().getEnclosingMethod().getName());
+					} else {
+						break;
+					}
+				} catch (Exception e) {
+//					getTest().log(LogStatus.FAIL, testcasename + " --: Element is not found::- " + e);
+//			take screenshot
+//					takeScreenshot(new Object() {
+//					}.getClass().getEnclosingMethod().getName());
+					break;
+				}
+				count++;
+			}
+		} catch (Exception e) {
+			if (count == 0) {
+				getTest().log(LogStatus.FAIL, testcasename + " --: Btn is not found for first time::- " + e);
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
+			}
+		}
+	}
+
+	public String split(String wordSpilt, String spiltSyntax, int lengthOfSplit, int text) {
+		String[] sentence = wordSpilt.split(spiltSyntax);
+		String test = "";
+		if (sentence.length >= lengthOfSplit) {
+			String first = sentence[text];
+			test = first;
+		}
+		return test;
+	}
 
 }

@@ -1,7 +1,6 @@
 package com.hrms.actions;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.hrms.pageobject.EmployeesDirectoryPageObject;
 
@@ -21,7 +20,6 @@ public class EmployeesDirectoryActions {
 		if (INSTANCE == null) {
 			INSTANCE = new EmployeesDirectoryActions(driver);
 		}
-
 		return INSTANCE;
 	}
 
@@ -31,7 +29,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeDirectorypageVisible();
 	}
 
-//	Employee directory clcik
+//	Employee directory click
 
 	public void employeesDirectoryClick() {
 		employeesdirectorypageObject.employeesDirectoryClick();
@@ -46,14 +44,20 @@ public class EmployeesDirectoryActions {
 //	create employee manually
 
 	public void createEmployeeManually() {
-		employeesdirectorypageObject.createNewBtnClick();
+		employeesdirectorypageObject.takeActionsNewBtnClick();
 		employeesdirectorypageObject.addManuallyClick();
 	}
 
-//	save btn while create employee
+//	mutiple click save btn while create employee
 
-	public void EmployeeDirectoryCreateSaveBtnClick() {
-		employeesdirectorypageObject.saveBtnEmployeeCreationFormDd();
+	public void EmployeeDirectoryCreateSaveBtnMutipleClick() {
+		employeesdirectorypageObject.saveBtnMutipleClickEmployeeCreationFormDd();
+	}
+
+//	single click save btn while create employee
+
+	public void EmployeeDirectoryCreateSaveBtnSingleClick() {
+		employeesdirectorypageObject.saveBtnSingleClickEmployeeCreationFormDd();
 	}
 
 //	success message that employee is create 
@@ -62,6 +66,14 @@ public class EmployeesDirectoryActions {
 
 //		success message that employee is create 
 		employeesdirectorypageObject.employeeCreationSuceessMessage();
+	}
+
+//empcode is exist -- error message so employee which not create	
+
+	public void employeeCodeAlreadyExist() {
+		employeesdirectorypageObject.employeeDirectoryEmployeecodealreadyExist();
+		employeesdirectorypageObject.employeeDirectoryCancelBtnClick();
+
 	}
 
 //	  refresh page
@@ -84,11 +96,58 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeDirectoryEmployeeeList();
 	}
 
+	public void randomNameGeneration() {
+		employeesdirectorypageObject.employeeCreationFormFullNameInputGenerator();
+
+		employeesdirectorypageObject.employeeCreationFormMOBILENUMBEREnterGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormPersonalEmailIDEnterGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormdetailOfficialEmailIDInputString();
+
+		employeesdirectorypageObject.employeeCreationFormAadharCardEnterGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormdetailEmployeeCodeInputGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress1TextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress2TextGneration();
+
+		employeesdirectorypageObject.employeeCreationFormAddressZipInputGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormBankNameTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormBankNameAccountNoTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormBankNameIFSCcodeTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormBankNameAccountHolderNameTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormEmergencyNameTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormEmergencyRelationshipTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormEmergencyAddressTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormEmergencyEmailTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormEmergencyMobileNoTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormQualificationInstitutionNameTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormQualificationPassingYearTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormQualificationPercentageTextGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormWEPreviousCompanyNameTxtGeneration();
+
+		employeesdirectorypageObject.employeeCreationFormWEJobTitleTxtGeneration();
+	}
+
 //	first section -->"personal detail"  employee creation form field
 
 	public void employeeCreationFirstSectionFormPersonalDetail() {
 
-//		name generation
 		employeesdirectorypageObject.employeeCreationFormFullNameInput();
 
 		employeesdirectorypageObject.employeeCreationFormGenderDd();
@@ -102,11 +161,11 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormDateOfBirthCalendar();
 
 		employeesdirectorypageObject.employeeCreationFormNationalityDd();
-//		mobile generation
+
 		employeesdirectorypageObject.employeeCreationFormMOBILENUMBEREnter();
-//		personal generating
+
 		employeesdirectorypageObject.employeeCreationFormPersonalEmailIDEnter();
-//		adhaar generating 
+
 		employeesdirectorypageObject.employeeCreationFormAadharCardEnter();
 
 		employeesdirectorypageObject.employeeCreationFormBloodGroupDd();
@@ -169,7 +228,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormPersonalEmailIDEnter();
 
 		employeesdirectorypageObject.employeeCreationFormAadharCardEnter();
-		
+
 		employeesdirectorypageObject.employeeCreationFormBloodGroupDd();
 
 	}
@@ -179,7 +238,6 @@ public class EmployeesDirectoryActions {
 	public void employeeCreationSecondSectionFormWorkDetail() {
 
 //		empcode generating
-		employeesdirectorypageObject.employeeCreationFormdetailEmployeeCodeInputString();
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeCodeInput();
 
 		employeesdirectorypageObject.employeeCreationFormdetailLeaveRuleDd();
@@ -195,8 +253,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeTypeDd();
 
 		employeesdirectorypageObject.employeeCreationFormdetailLocation_Dd();
-//  mandatory filed
-		employeesdirectorypageObject.employeeCreationFormdetailOfficialEmailIDInputString();
+
 		employeesdirectorypageObject.employeeCreationFormdetailOfficialEmailIDInput();
 
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeStatusDd();
@@ -206,29 +263,29 @@ public class EmployeesDirectoryActions {
 	}
 //	mandatory second section -->"detail" employee creation form field
 
-	public void employeeCreationSecondSectionMandatoryFormWorkDetail() {
-		employeesdirectorypageObject.employeeCreationFormdetailEmployeeCodeInput();
-		
+	public void employeeCreationSecondSectionNewEmpCodeFormWorkDetail() {
+
+//	new emp code 	
+		employeesdirectorypageObject.employeeCreationFormdetailNewEmployeeCodeInput();
+
 		employeesdirectorypageObject.employeeCreationFormdetailLeaveRuleDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailReportingManagerDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailShiftDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailDepartmentDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailDesignationDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeTypeDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailLocation_Dd();
-		
-		employeesdirectorypageObject.employeeCreationFormdetailOfficialEmailIDInputString();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailOfficialEmailIDInput();
-		
+
 		employeesdirectorypageObject.employeeCreationFormdetailEmployeeStatusDd();
-		
+
 		employeesdirectorypageObject.employeeCreationFormMandatoryDetailCompanyDd();
 
 	}
@@ -237,11 +294,8 @@ public class EmployeesDirectoryActions {
 
 	public void employeeCreationThreeSectionFormAddress() {
 
-//		generating 
-//		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress1TextString();
 		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress1Text();
-//		generating
-//		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress2TextString();
+
 		employeesdirectorypageObject.employeeCreationFormAddressCurrentAddress2Text();
 
 		employeesdirectorypageObject.employeeCreationFormAddressCountryDd();
@@ -249,7 +303,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.employeeCreationFormAddressStateDd();
 
 		employeesdirectorypageObject.employeeCreationFormAddressCityDd();
-//      Generating
+
 		employeesdirectorypageObject.employeeCreationFormAddressZipInput();
 
 		employeesdirectorypageObject.employeeCreationFormAddressSameAsCurrentCb();
@@ -342,7 +396,7 @@ public class EmployeesDirectoryActions {
 
 //		 save btn while create employee
 
-		EmployeeDirectoryCreateSaveBtnClick();
+//		EmployeeDirectoryCreateSaveBtnClick();
 	}
 
 //	employee not filled first section (full name , dob , marriage date & joining date is not fill)  mandatory filled it should get error
@@ -363,6 +417,9 @@ public class EmployeesDirectoryActions {
 
 //		cancel btn
 		employeesdirectorypageObject.employeeDirectoryCancelBtnClick();
+
+//		url match
+		employeesdirectorypageObject.getCurrentUrlToCrossVerify();
 	}
 
 //	employee (not filled joining date)   mandatory filled it should get error
@@ -378,7 +435,7 @@ public class EmployeesDirectoryActions {
 		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
 
 //		second section mandatory filed ar not filled
-		employeeCreationSecondSectionMandatoryFormWorkDetail();
+		employeeCreationSecondSectionNewEmpCodeFormWorkDetail();
 		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
 
 //		three section mandatory filed ar not filled
@@ -402,7 +459,7 @@ public class EmployeesDirectoryActions {
 
 //		 save btn while create employee
 
-		EmployeeDirectoryCreateSaveBtnClick();
+		EmployeeDirectoryCreateSaveBtnMutipleClick();
 
 //		pop of joining date is missing 
 		employeesdirectorypageObject.Employee_Directory_joining_Date_Is_Not_Fill_Show_popup_of_Process_Btn();
@@ -485,6 +542,33 @@ public class EmployeesDirectoryActions {
 	public void employeeDiectoyarrowBthClick() {
 		employeesdirectorypageObject.employeeDiectoyarrowBthClick();
 	}
-	
-	
+
+//file upload bulk creation
+
+	public void fileUploadBulkCreation() {
+		employeesdirectorypageObject.takeActionsNewBtnClick();
+		employeesdirectorypageObject.employeeDirectorBulkCreation();
+		employeesdirectorypageObject.employeeDirectoryFileUpload();
+		employeesdirectorypageObject.processBtnEmployeeCreationFormDd();
+		employeesdirectorypageObject.sucessMessageBulkUpload();
+	}
+
+//	write data in excel files
+
+	public void excelFileWrite() {
+		employeesdirectorypageObject.excelFilesWriteBulkCreate();
+	}
+
+//	 compare employee code 
+
+	public void empCodeFindAnyDuplicate() {
+		employeesdirectorypageObject.uniqueListEmpCode();
+	}
+
+//	check Emp Directory Page Close
+	public void checkEmpDirectoryPageShouldNotDisplay() {
+
+		employeesdirectorypageObject.checkEmpDirectoryPageClose();
+	}
+
 }

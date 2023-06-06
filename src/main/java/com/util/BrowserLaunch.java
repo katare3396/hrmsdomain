@@ -9,7 +9,6 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -30,8 +29,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -42,20 +44,21 @@ public class BrowserLaunch {
 //	propertiesLoader 
 	private final String FILE_NAME = System.getProperty("user.dir") + "/src/main/resources/testdata.properties";
 	private Properties prop = new PropertiesLoader(FILE_NAME).load();
+//	private static final Logger logger = LogManager.getLogger(BrowserLaunch.class);
 
 //	Browser launch  variable		
 	private String browsers = prop.getProperty("browser");
 
 	public ExtentTest test;
-	public static Logger logger;
 
 	@BeforeClass
 	public void browserlaunch() {
 		try {
+//			System.setProperty("log4j.configurationFile", "log4j2.xml");
 
 //	Browser launch 
 			if (browsers.equalsIgnoreCase("chrome")) {
-
+//				logger.info("chrome browser");
 				// Setup ChromeDriver using WebDriverManager
 				ChromeOptions chromeOptions = new ChromeOptions();
 
@@ -63,18 +66,16 @@ public class BrowserLaunch {
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
 
 					chromeOptions.addArguments("headless");
-					chromeOptions.setHeadless(true);
+//					user can add headless mode in argument
+					chromeOptions.addArguments("--headless=new");
 					chromeOptions.addArguments("window-size=1920x1000");
 					WebDriverManager.chromedriver().setup();
 					driver = new ChromeDriver(chromeOptions);
-
-//					driver = new ChromeDriver(option);
 					System.out.println("Browser is opened in Headless mode.");
 				} else {
-					System.out.println("Browser is opened in Browser mode.");
 					WebDriverManager.chromedriver().setup();
-					driver = new ChromeDriver(chromeOptions);
-
+					driver = new ChromeDriver();
+					System.out.println("Browser is opened in Browser mode.");
 				}
 
 			} else if (browsers.equalsIgnoreCase("edge")) {
@@ -85,19 +86,19 @@ public class BrowserLaunch {
 //	headless run Edge    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
 					edgeOptions.addArguments("headless");
-					edgeOptions.setHeadless(true);
+					edgeOptions.addArguments("--headless=new");
 					edgeOptions.addArguments("window-size=1920x1000");
 					WebDriverManager.edgedriver().setup();
 					driver = new EdgeDriver(edgeOptions);
 					System.out.println("Browser is opened in Headless mode.");
 				} else {
-					System.out.println("Browser is opened in Browser mode.");
 					WebDriverManager.edgedriver().setup();
-					driver = new EdgeDriver(edgeOptions);
+					driver = new EdgeDriver();
+					System.out.println("Browser is opened in Browser mode.");
+
 				}
 
 			} else if (browsers.equalsIgnoreCase("firefox")) {
-
 
 				// Setup Firefox using WebDriverManager
 				FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -106,39 +107,27 @@ public class BrowserLaunch {
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
 					firefoxOptions.addArguments("--headless");
 					firefoxOptions.addArguments("window-size=1920x1000");
+					driver = new FirefoxDriver(firefoxOptions);
 					System.out.println("Browser is opened in Headless mode.");
-					driver = new FirefoxDriver(firefoxOptions);
 				} else {
-					System.out.println("Browser is opened in Browser mode.");
 					WebDriverManager.firefoxdriver().setup();
-					driver = new FirefoxDriver(firefoxOptions);
+					driver = new FirefoxDriver();
+					System.out.println("Browser is opened in Browser mode.");
 				}
-
 			} else if (browsers.equalsIgnoreCase("safari")) {
 
-//	     Firebox Browser launch binary location  (sessionnotaacreatedexception---error )
-				String safariPath = "\"C:\\Program Files (x86)\\Safari\\\"";
-
-//		 headless run Firefox    true---headless mode  , false -- browser mode
+//		 headless run Safari    true---headless mode  , false -- browser mode
 				if (Boolean.parseBoolean(prop.getProperty("isHeadlessMode"))) {
-					SafariOptions option = new SafariOptions();
-					option.setBrowserVersion(safariPath);
-//				option.addArguments("--headless");
-//				option.addArguments("window-size=1920x1000");
-//				option.
-//				System.out.println("Browser is opened in Headless mode.");
-//				driver = new FirefoxDriver(option);	
+					SafariOptions safarioptions = new SafariOptions();
+					safarioptions.setCapability("headless", true);
+					System.out.println("Browser is opened in Headless mode.");
 				} else {
-					SafariOptions option = new SafariOptions();
-					option.setBrowserVersion(safariPath);
-					System.out.println("Browser is opened in Browser mode.");
 					driver = new SafariDriver();
+					System.out.println("Browser is opened in Browser mode.");
 				}
-
 			} else {
 // if browser is incorrect
-				System.out.println("Please provide correct browser name");
-
+				System.out.println("Browser is incorrect");
 			}
 
 //		Url of Browser
@@ -149,12 +138,12 @@ public class BrowserLaunch {
 			driver.manage().deleteAllCookies();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			getTest().log(LogStatus.FAIL, browsers + " :Something went wrong :: --- " + e);
 		}
 
 	}
 
-	@BeforeMethod()
+	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod(Method method) {
 //		logger = Logger.getLogger(method.getDeclaringClass().getSimpleName() + "-" + method.getName());
 		test = getTest(method.getDeclaringClass().getSimpleName() + "-" + method.getName(), method.getName());
@@ -176,9 +165,12 @@ public class BrowserLaunch {
 				// copy file object to designated location
 				FileUtils.copyFile(scrFile, new File(imagePath + ".png"));
 				System.out.println(imagePath + ".png");
-				logger.info("Method - " + method.getName() + " failed , see the screenshot - " + imagePath + ".png");
+//				logger.info("Method - " + method.getName() + " failed , see the screenshot - " + imagePath + ".png");
 			} catch (Exception e) {
+				getTest().log(LogStatus.FAIL, getTest().addScreenCapture(imagePath + ".png"));
+
 				Assert.fail("Error while taking screenshot - " + e);
+
 			}
 		}
 		closeTest(test);

@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-passed">Suite</span>
+              <span class="suite-name border-failed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Suite" class="navigator-link ">
-                    <span>C:\Users\amol\git\hrmsdomain\testng.xml</span>
+                    <span>testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,7 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">2 methods, 1 failed,   1 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="com.hrms.testcases.EmployeesAccessTestCase" class="method navigator-link" hash-for-method="rolePermisAllRoleAssignedToSingleEmployee">rolePermisAllRoleAssignedToSingleEmployee</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -104,12 +118,7 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.hrms.testcases.EmployeesDirectoryTestCase" class="method navigator-link" hash-for-method="employeeDiectoyarrowBthClick">employeeDiectoyarrowBthClick</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="com.hrms.testcases.EmployeesDirectoryTestCase" class="method navigator-link" hash-for-method="employeeDirectoryPageVisible">employeeDirectoryPageVisible</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Suite" title="com.hrms.testcases.EmployeesAccessTestCase" class="method navigator-link" hash-for-method="rolePermiPageVisibilty">rolePermiPageVisibilty</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -124,24 +133,59 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-passed">
+          <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.hrms.testcases.EmployeesDirectoryTestCase</span>
+              <img src="failed.png"/>
+              <span class="class-name">com.hrms.testcases.EmployeesAccessTestCase</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="employeeDiectoyarrowBthClick">
-                  </a> <!-- employeeDiectoyarrowBthClick -->
-                  <span class="method-name">employeeDiectoyarrowBthClick</span>
+                  <a name="rolePermisAllRoleAssignedToSingleEmployee">
+                  </a> <!-- rolePermisAllRoleAssignedToSingleEmployee -->
+                  <span class="method-name">rolePermisAllRoleAssignedToSingleEmployee</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: chrome=113.0.5672.126)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;12.6.5&apos;, java.version: &apos;17.0.7&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d00c8460c1bf0fd9b835f19c5e4babdb, refresh {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 113.0.5672.126, chrome: {chromedriverVersion: 113.0.5672.63 (0e1a4471d5ae..., userDataDir: /var/folders/sx/tw29r1fs73v...}, goog:chromeOptions: {debuggerAddress: localhost:53227}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: MAC, proxy: Proxy(), se:cdp: ws://localhost:53227/devtoo..., se:cdpVersion: 113.0.5672.126, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d00c8460c1bf0fd9b835f19c5e4babdb
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:598)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteNavigation.refresh(RemoteWebDriver.java:992)
+	at com.util.WebBasePage.pageRefresh(WebBasePage.java:267)
+	at com.hrms.pageobject.EmployeesAccessControlPageObject.refreshPage(EmployeesAccessControlPageObject.java:200)
+	at com.hrms.pageobject.EmployeesAccessControlPageObject.empRolesPermissionSearchBox(EmployeesAccessControlPageObject.java:147)
+	at com.hrms.actions.EmployeesAccessControlAction.empRolesPermissionCheckboxCheck(EmployeesAccessControlAction.java:48)
+	at com.hrms.testcases.EmployeesAccessTestCase.rolePermisAllRoleAssignedToSingleEmployee(EmployeesAccessTestCase.java:37)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 32 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Suite-class-failed -->
+          <div class="suite-Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.hrms.testcases.EmployeesAccessTestCase</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="employeeDirectoryPageVisible">
-                  </a> <!-- employeeDirectoryPageVisible -->
-                  <span class="method-name">employeeDirectoryPageVisible</span>
+                  <a name="rolePermiPageVisibilty">
+                  </a> <!-- rolePermiPageVisibilty -->
+                  <span class="method-name">rolePermiPageVisibilty</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -149,7 +193,7 @@
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\amol\git\hrmsdomain\testng.xml</span>
+            <span class="header-content">/Users/zimyo/Desktop/git-projects/hrmsdomain/testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -158,7 +202,7 @@
 &lt;suite name=&quot;Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.hrms.testcases.EmployeesDirectoryTestCase&quot;/&gt;
+      &lt;class name=&quot;com.hrms.testcases.EmployeesAccessTestCase&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
 &lt;/suite&gt; &lt;!-- Suite --&gt;
@@ -200,18 +244,18 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'employeeDiectoyarrowBthClick')
-data.setCell(0, 2, 'com.hrms.testcases.EmployeesDirectoryTestCase')
-data.setCell(0, 3, 21813);
+data.setCell(0, 1, 'rolePermisAllRoleAssignedToSingleEmployee')
+data.setCell(0, 2, 'com.hrms.testcases.EmployeesAccessTestCase')
+data.setCell(0, 3, 624209);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'employeeDirectoryPageVisible')
-data.setCell(1, 2, 'com.hrms.testcases.EmployeesDirectoryTestCase')
-data.setCell(1, 3, 20114);
+data.setCell(1, 1, 'rolePermiPageVisibilty')
+data.setCell(1, 2, 'com.hrms.testcases.EmployeesAccessTestCase')
+data.setCell(1, 3, 21096);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 41 seconds</span>
+              <span class="suite-total-time">Total running time: 10 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -237,42 +281,48 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.hrms.testcases.EmployeesDirectoryTestCase</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.hrms.testcases.EmployeesAccessTestCase</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">browserlaunch</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
-                <span class="method-name">beforeMethod(public void com.hrms.testcases.EmployeesDirectoryTestCase.employeeDirectoryPageVisible())</span>
-                <span class="method-start">7012 ms</span>
+                <span class="method-name">beforeMethod(public void com.hrms.testcases.EmployeesAccessTestCase.rolePermiPageVisibilty())</span>
+                <span class="method-start">8079 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">employeeDirectoryPageVisible</span>
-                <span class="method-start">7201 ms</span>
+                <span class="method-name">rolePermiPageVisibilty</span>
+                <span class="method-start">13355 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">reportWrapUp([TestResult name=employeeDirectoryPageVisible status=SUCCESS method=EmployeesDirectoryTestCase.emplo...)</span>
-                <span class="method-start">27315 ms</span>
+                <span class="method-name">reportWrapUp([TestResult name=rolePermiPageVisibilty status=SUCCESS method=EmployeesAccessTestCase.rolePermiPageV...)</span>
+                <span class="method-start">34455 ms</span>
               </div> <!-- configuration-method after -->
-              <div class="test-method">
-                <span class="method-name">employeeDiectoyarrowBthClick</span>
-                <span class="method-start">27331 ms</span>
-              </div> <!-- test-method -->
               <div class="configuration-method before">
-                <span class="method-name">beforeMethod(public void com.hrms.testcases.EmployeesDirectoryTestCase.employeeDiectoyarrowBthClick())</span>
-                <span class="method-start">27331 ms</span>
+                <span class="method-name">beforeMethod(public void com.hrms.testcases.EmployeesAccessTestCase.rolePermisAllRoleAssignedToSingleEmployee())</span>
+                <span class="method-start">34464 ms</span>
               </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">rolePermisAllRoleAssignedToSingleEmployee</span>
+                <span class="method-start">34464 ms</span>
+              </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">reportWrapUp([TestResult name=employeeDiectoyarrowBthClick status=SUCCESS method=EmployeesDirectoryTestCase.emplo...)</span>
-                <span class="method-start">49146 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">reportWrapUp([TestResult name=rolePermisAllRoleAssignedToSingleEmployee status=FAILURE method=EmployeesAccessTest...)</span>
+                <span class="method-start">658682 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">driverclose</span>
-                <span class="method-start">49147 ms</span>
+                <span class="method-start">658699 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-suite after">
                 <span class="method-name">close</span>
-                <span class="method-start">49486 ms</span>
+                <span class="method-start">663781 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
