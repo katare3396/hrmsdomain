@@ -446,7 +446,9 @@ public class EmployeesDirectoryPageObject extends WebBasePage {
 	
 	public void employeeDirectoryRefreshPage() {
 		click(Dashboard_Click, "change page so that previous data search box get blank ", 100);
+		staticWait(1000);
 		employeesDirectoryClick();
+		staticWait(1000);
 		pageRefresh("Zimyo | Account");
 		
 	}

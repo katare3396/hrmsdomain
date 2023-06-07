@@ -7,11 +7,11 @@ import com.hrms.pageobject.EmployeesDirectoryPageObject;
 public class EmployeesDirectoryActions {
 
 	private static EmployeesDirectoryActions INSTANCE;
-	private WebDriver driver;
+//	private WebDriver driver;
 	private EmployeesDirectoryPageObject employeesdirectorypageObject;
 
 	private EmployeesDirectoryActions(WebDriver driver) {
-		this.driver = driver;
+//		this.driver = driver;
 		this.employeesdirectorypageObject = new EmployeesDirectoryPageObject(driver);
 	}
 

@@ -1,6 +1,7 @@
 package com.hrms.testcases;
 
 import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 
 import com.hrms.actions.LoginAction;
 import com.util.BrowserLaunch;

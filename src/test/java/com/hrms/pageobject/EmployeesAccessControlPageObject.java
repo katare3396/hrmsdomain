@@ -53,18 +53,9 @@ public class EmployeesAccessControlPageObject extends WebBasePage {
 
 //	not check checkbox
 
-//	@FindBy(xpath = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[4]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]")
-//	private WebElement UnCheck_CheckBox_Core_Hrms;
-
 	String UnCheck_CheckBox_Core_Hrms = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[4]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]";
 
-//	@FindBy(xpath = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[5]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]")
-//	private WebElement UnCheck_CheckBox_Employee;
-
-	String UnCheck_CheckBox_Employee = "\"//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[5]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]";
-
-//	@FindBy(xpath = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[6]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]")
-//	private WebElement UnCheck_CheckBox_Payroll;
+	String UnCheck_CheckBox_Employee = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[5]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]";
 
 	String UnCheck_CheckBox_Payroll = "//tr[@class='MuiTableRow-root MuiTableRow-hover column-content css-yv5l9w-MuiTableRow-root']/td[6]/descendant::span[contains(@class, 'MuiIconButton-label')]/child::input[not(@checked)]";
 

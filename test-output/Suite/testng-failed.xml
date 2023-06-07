@@ -3,17 +3,16 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="com.hrms.testcases.EmployeesAccessTestCase">
+      <class name="com.hrms.testcases.EssCalendarTestCase">
         <methods>
           <include name="beforeMethod"/>
-          <include name="rolePermisAllRoleAssignedToSingleEmployee"/>
+          <include name="essPageDisplay"/>
           <include name="close"/>
           <include name="driverclose"/>
-          <include name="rolePermiPageVisibilty"/>
           <include name="reportWrapUp"/>
           <include name="browserlaunch"/>
         </methods>
-      </class> <!-- com.hrms.testcases.EmployeesAccessTestCase -->
+      </class> <!-- com.hrms.testcases.EssCalendarTestCase -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

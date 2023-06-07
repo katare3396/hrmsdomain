@@ -11,8 +11,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.*;
@@ -862,38 +864,39 @@ public class WebBasePage extends WaitStatement {
 
 	public void checkbox(String checkboxxpath, int isChecked) {
 		List<WebElement> checkboxes = driver.findElements(By.xpath(checkboxxpath));
-try {
-		for (WebElement checkbox : checkboxes) {
+		try {
+			for (WebElement checkbox : checkboxes) {
 
-			switch (isChecked) {
+				switch (isChecked) {
 //			not check actions --> than check actions
-			case 0: {
-				if (!checkbox.isSelected()) {
-					checkbox.click();
-					getTest().log(LogStatus.PASS, "currentpage  :--" + checkboxxpath);
+				case 0: {
+					if (!checkbox.isSelected()) {
+						checkbox.click();
+						getTest().log(LogStatus.PASS, "currentpage  :--" + checkboxxpath);
 
-				} else {
-					System.out.println("checkbox is already select");
-					takeScreenshot(new Object() {
-					}.getClass().getEnclosingMethod().getName());
+					} else {
+						System.out.println("checkbox is already select");
+						takeScreenshot(new Object() {
+						}.getClass().getEnclosingMethod().getName());
+					}
+					break;
 				}
-				break;
-			}
 //			check actions -- > uncheck action checkbox
-			case 1: { 	
-				if (checkbox.isSelected()) {
-					checkbox.click();
-					getTest().log(LogStatus.PASS, "currentpage :---" + checkboxxpath);
+				case 1: {
+					if (checkbox.isSelected()) {
+						checkbox.click();
+						getTest().log(LogStatus.PASS, "currentpage :---" + checkboxxpath);
 
-				} else {
-					System.out.println("checkbox is already select");
-					takeScreenshot(new Object() {
-					}.getClass().getEnclosingMethod().getName());
+					} else {
+						System.out.println("checkbox is already select");
+						takeScreenshot(new Object() {
+						}.getClass().getEnclosingMethod().getName());
+					}
+					break;
 				}
-				break;
+				}
 			}
-			}
-		}}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -1017,6 +1020,17 @@ try {
 			test = first;
 		}
 		return test;
+	}
+
+	public void switchTab() {
+//	mutiple window 
+		Set<String> allWindowHandleId = driver.getWindowHandles();
+		Iterator<String> windowHandles = allWindowHandleId.iterator();
+		String parentId = windowHandles.next();
+		String childId = windowHandles.next();
+
+		driver.switchTo().window(parentId);
+		driver.switchTo().window(childId);
 	}
 
 }
