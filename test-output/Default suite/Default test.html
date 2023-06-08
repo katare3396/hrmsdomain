@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jun 07 14:31:14 IST 2023</td>
+<td>Started on:</td><td>Thu Jun 08 10:04:27 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>29 seconds (29454 ms)</td>
+<tr><td>Total time:</td><td>45 seconds (45085 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,8 +76,12 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='com.hrms.testcases.EssCalendarTestCase.essPageDisplay()'><b>essPageDisplay</b><br>Test class: com.hrms.testcases.EssCalendarTestCase</td>
-<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;com.hrms.actions.EssCalendarAction.essSideDisplay()&quot; because &quot;this.essCalendarAction&quot; is null
-	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:22)
+<td><div><pre>java.lang.AssertionError: get_current_url_Login_Page_AdminUrl not matched
+	at org.testng.Assert.fail(Assert.java:99)
+	at com.util.WebBasePage.getCurrentUrl(WebBasePage.java:262)
+	at com.hrms.pageobject.LoginPageObject.getCurrentUrlAdminSide(LoginPageObject.java:48)
+	at com.hrms.actions.LoginAction.enterLoginCredential(LoginAction.java:24)
+	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:19)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -106,9 +110,13 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1445384588", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1445384588'><pre>java.lang.NullPointerException: Cannot invoke &quot;com.hrms.actions.EssCalendarAction.essSideDisplay()&quot; because &quot;this.essCalendarAction&quot; is null
-	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:22)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1323457920", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1323457920'><pre>java.lang.AssertionError: get_current_url_Login_Page_AdminUrl not matched
+	at org.testng.Assert.fail(Assert.java:99)
+	at com.util.WebBasePage.getCurrentUrl(WebBasePage.java:262)
+	at com.hrms.pageobject.LoginPageObject.getCurrentUrlAdminSide(LoginPageObject.java:48)
+	at com.hrms.actions.LoginAction.enterLoginCredential(LoginAction.java:24)
+	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:19)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -138,8 +146,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>16</td>
-<td>com.hrms.testcases.EssCalendarTestCase@27f981c6</td></tr>
+<td>30</td>
+<td>com.hrms.testcases.EssCalendarTestCase@1b11171f</td></tr>
 </table><p>
 </body>
 </html>

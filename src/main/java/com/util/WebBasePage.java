@@ -1022,15 +1022,49 @@ public class WebBasePage extends WaitStatement {
 		return test;
 	}
 
-	public void switchTab() {
+//	switch tab
+	public void switchTab(String compareurl, Boolean tabSwitch) {
 //	mutiple window 
-		Set<String> allWindowHandleId = driver.getWindowHandles();
-		Iterator<String> windowHandles = allWindowHandleId.iterator();
-		String parentId = windowHandles.next();
-		String childId = windowHandles.next();
+		String parentId = "";
+		String childId = "";
+		String currenturl = driver.getCurrentUrl();
 
-		driver.switchTo().window(parentId);
-		driver.switchTo().window(childId);
+		try {
+			Set<String> allWindowHandleId = driver.getWindowHandles();
+			Iterator<String> windowHandles = allWindowHandleId.iterator();
+			parentId = windowHandles.next();
+			childId = windowHandles.next();
+// tabswitch  -- true (if condition) childtabwsitch
+			if (currenturl.equalsIgnoreCase(compareurl) && tabSwitch && childId != null) {
+				driver.switchTo().window(childId);
+				getTest().log(LogStatus.PASS,
+						"ChildIdSwitch:--" + childId + "--:---" + currenturl + "-:curenturl :---"
+								+ " --: Success possible to swich tab(childId) curent url  to compare url ::- "
+								+ "---;compareurl;---" + compareurl);
+
+			}
+// tabswitch -- false (if condition ) parenttabswitch
+			else if (currenturl.equalsIgnoreCase(compareurl)  && !tabSwitch && parentId != null) {
+				driver.close();
+				driver.switchTo().window(parentId);
+				getTest().log(LogStatus.PASS,
+						"ParentIdSwitch:--" + parentId + "--:---" + currenturl + "-:curenturl :---"
+								+ " --: Success possible to swich tab(ParentId) curent url  to compare url ::- "
+								+ "---;compareurl;---" + compareurl);
+
+			} else {
+				getTest().log(LogStatus.FAIL, currenturl + "--:curenturl :---" + " --: Not possible to swich tab ::- "
+						+ "---;compareurl;---" + compareurl);
+				takeScreenshot(new Object() {
+				}.getClass().getEnclosingMethod().getName());
+			}
+		} catch (Exception e) {
+			getTest().log(LogStatus.FAIL, "curenturl :---" + currenturl + "----:compareurl:--" + compareurl
+					+ " --: exception error:-- ::- " + e);
+			takeScreenshot(new Object() {
+			}.getClass().getEnclosingMethod().getName());
+			Assert.fail("" + e);
+
+		}
 	}
-
 }
