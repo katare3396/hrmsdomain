@@ -262,6 +262,7 @@ public class WebBasePage extends WaitStatement {
 			Assert.fail(name + "Url not matched");
 		}
 		return url;
+		
 	}
 
 	public void pageRefresh(String name) {
