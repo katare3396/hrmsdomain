@@ -130,8 +130,34 @@
                   <a name="essPageDisplay">
                   </a> <!-- essPageDisplay -->
                   <span class="method-name">essPageDisplay</span>
-                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;com.hrms.actions.EssCalendarAction.essSideDisplay()&quot; because &quot;this.essCalendarAction&quot; is null
-	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:22)
+                  <div class="stack-trace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=114.0.5735.106)
+Build info: version: &apos;4.8.3&apos;, revision: &apos;e5e76298c3&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;12.6.5&apos;, java.version: &apos;17.0.7&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [24c8b8ebfbc839952569846f1d35a632, getCurrentUrl {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.106, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /var/folders/sx/tw29r1fs73v...}, goog:chromeOptions: {debuggerAddress: localhost:52657}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: MAC, proxy: Proxy(), se:cdp: ws://localhost:52657/devtoo..., se:cdpVersion: 114.0.5735.106, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 24c8b8ebfbc839952569846f1d35a632
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:598)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
+	at org.openqa.selenium.remote.RemoteWebDriver.getCurrentUrl(RemoteWebDriver.java:309)
+	at com.util.WebBasePage.switchTab(WebBasePage.java:1030)
+	at com.hrms.pageobject.EssCalendarPageObject.essBtnClick(EssCalendarPageObject.java:42)
+	at com.hrms.actions.EssCalendarAction.essSideDisplay(EssCalendarAction.java:20)
+	at com.hrms.testcases.EssCalendarTestCase.essPageDisplay(EssCalendarTestCase.java:23)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -169,7 +195,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/sx/tw29r1fs73v280g64405ydw80000gn/T/testng-eclipse-1727593789/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/sx/tw29r1fs73v280g64405ydw80000gn/T/testng-eclipse--306933040/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -222,12 +248,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'essPageDisplay')
 data.setCell(0, 2, 'com.hrms.testcases.EssCalendarTestCase')
-data.setCell(0, 3, 16040);
+data.setCell(0, 3, 15914133);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 16 seconds</span>
+              <span class="suite-total-time">Total running time: 4 hours</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -260,25 +286,29 @@ return data;
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
                 <span class="method-name">beforeMethod(public void com.hrms.testcases.EssCalendarTestCase.essPageDisplay())</span>
-                <span class="method-start">7740 ms</span>
+                <span class="method-start">13235 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">essPageDisplay</span>
-                <span class="method-start">13060 ms</span>
+                <span class="method-start">18737 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">reportWrapUp([TestResult name=essPageDisplay status=FAILURE method=EssCalendarTestCase.essPageDisplay()[pri:0, in...)</span>
-                <span class="method-start">29106 ms</span>
+                <span class="method-start">15932904 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-class after">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">driverclose</span>
-                <span class="method-start">29216 ms</span>
+                <span class="method-start">15932922 ms</span>
               </div> <!-- configuration-class after -->
               <div class="configuration-suite after">
                 <span class="method-name">close</span>
-                <span class="method-start">34474 ms</span>
+                <span class="method-start">15938015 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

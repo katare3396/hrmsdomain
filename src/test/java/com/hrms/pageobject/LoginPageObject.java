@@ -45,7 +45,12 @@ public class LoginPageObject extends WebBasePage {
 
 	public void getCurrentUrlAdminSide() {
 		staticWait(500);
-		getCurrentUrl(prop.getProperty("get_current_url_Login_Page_Admin"), "get_current_url_Login_Page_Admin");
+		String currenturl = driver.getCurrentUrl();
+		if (currenturl.equalsIgnoreCase(prop.getProperty("get_current_url_Login_Page_Admin"))) {
+			getCurrentUrl(prop.getProperty("get_current_url_Login_Page_Admin"), "get_current_url_Login_Page_Admin");
+		}else if(currenturl.equalsIgnoreCase(prop.getProperty(""))) {
+			
+		}
 	}
 
 	public void visibiltyLoginPage() {

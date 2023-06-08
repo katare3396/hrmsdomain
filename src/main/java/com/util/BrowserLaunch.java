@@ -8,6 +8,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -69,6 +70,10 @@ public class BrowserLaunch {
 //					user can add headless mode in argument
 					chromeOptions.addArguments("--headless=new");
 					chromeOptions.addArguments("window-size=1920x1000");
+					chromeOptions.addArguments("--disable-notifications");
+					chromeOptions.setExperimentalOption("prefs", 
+			                Map.of("profile.default_content_setting_values.notifications", 2));
+
 					WebDriverManager.chromedriver().setup();
 					driver = new ChromeDriver(chromeOptions);
 					System.out.println("Browser is opened in Headless mode.");
@@ -185,6 +190,7 @@ public class BrowserLaunch {
 	@AfterClass(alwaysRun = true)
 	public void driverclose() {
 		driver.close();
+		driver.quit();
 	}
 
 }
